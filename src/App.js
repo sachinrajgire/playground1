@@ -1,19 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import './testy.scss';
 
 function App() {
+  
+ 
+  
   return (
     <div className="App">
-      <header className="App-header">
-        
-        <div>
-SACHIN'S FIRST CHANGE IN CREATE REACT APP
 
-        </div>
-      </header>
+      <header className="header">Header</header>
+      <nav className='nav'>Navigation</nav>
+      <section className='midsection'>
+     
+
     </div>
   );
 }
 
 export default App;
-  
