@@ -11,6 +11,7 @@ function App() {
       <header className="header">Header</header>
       <nav className='nav'>Navigation</nav>
       <section className='midsection'>
+       {/* Changed something in branch for repo  */}
      
 
     </div>
