@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Routing from './Routing';
 import reportWebVitals from './reportWebVitals';
+import Form from './components/Form/Form'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +15,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
        <Routing />
-       {/* <Route path="/form" component={Form} />       */}
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
