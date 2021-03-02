@@ -2,25 +2,23 @@ import React from 'react';
 import { Link ,Redirect,useHistory} from "react-router-dom";
 import './Rooter.scss'
 
-
+const isSubmitDisabled=false
 function Rooter() {
   let history = useHistory();
   
 // console.log(children,'children');
-const routingObject = [
-{url:`/url`,label:'Main App'},
-{url:`/test`,label:'For Testing'},
-{url:`/github`,label:'Main App'},
 
-]
 
  return (
     <div style={{margin:'100px'}}>
       <div className='box'>
+      <Link to="/">Home</Link>
+      </div>
+      <div className='box'>
       <Link to="/app">Main App</Link>
       </div>
       <div className='box'>
-      <Link to="/test">Test</Link>
+      <Link to={`/test/${isSubmitDisabled}`}>Test</Link>
       </div>
       <div className='box'>
       <a href="https://github.com/sachinrajgire/playground1/tree/master">Github</a>

@@ -17,7 +17,7 @@ function Routing() {
     return (
         <div>
             <Switch>
-            <Route path="/test" component={Test} />                   
+            <Route path="/test/:isSubmitDisabled" component={Test}/>
             <Route path="/app" component={App} />                   
             <Route path="/" component={Rooter} />                   
            </Switch>

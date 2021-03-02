@@ -8,7 +8,7 @@ import Card from './components/Card/Card';
 import Lottery from './components/Lottery/Lottery';
 import { v4 as uuidv4 } from 'uuid';
 import Form from './components/Form/Form';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 
 let  uuidData = data.map(i=>{
@@ -50,7 +50,7 @@ const [universityName,setUniversityName] =useState("")
 const [isSubmitDisabled,setIsSubmitDisabled] =useState(false)
 
 // console.log(data,deletedRecords,'data deleted records');
-
+const history= useHistory()
 
 function getFavs() {
 let empData= uuidData.filter(i=>fav.includes(i.Id))
@@ -83,8 +83,6 @@ setData(copyData)
 function createNewRecord() {
 
 }
-
-
 
 function deleteRecord (Id) {
 let deletedRecord= data.find((i)=>{
@@ -136,6 +134,11 @@ const {Employer, Career_Url, Job_Title,Id} = i
 return (  
 
 <div>
+   <div>
+<button onClick={()=>setFav([])}>Clear All Favorites</button>
+<button onClick={()=>history.push("/")}>Go Home </button>
+<button onClick={()=>history.push(`/test?isSubmitDisabled=${isSubmitDisabled}`)}>Test</button>
+       </div> 
 Here are your favorite companies 
 <div>{`Total record :::${data.length}`}</div>
 <div>{`Total deleted record :::${deletedRecords.length}`}</div>
@@ -161,10 +164,8 @@ isSubmitDisabled={isSubmitDisabled}
 
 
 
-<button onClick={()=>setFav([])}>Clear All Favorites</button>
-{/* <button onClick={()=>handleRedirectForm()}>Create New Form</button> */}
 
-<button onClick={()=>createNewRecord()}>Create New Record</button>
+
 
 
 <div>
