@@ -34,3 +34,22 @@ margin:20px;
    }
 
   }
+
+  #outer {
+      background-color: blue;
+      min-width: 500px;
+      min-height: 500px;
+      margin:20px;
+  }
+  #middle {
+      background-color: orange;
+      min-width: 400px;
+      min-height: 400px;
+      margin:20px;
+  }
+  #inner {
+      background-color: yellow;
+      min-width: 300px;
+      min-height: 300px;
+      margin:20px;
+  } 
