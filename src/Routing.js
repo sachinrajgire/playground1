@@ -3,6 +3,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import App from './App' ;
 import Rooter from './components/Rooter/Rooter' ;
+import Lottery from './components/Lottery/Lottery'
 import Form from './components/Form/Form'
 import Test from './components/Test/Test'
 import {
@@ -19,6 +20,7 @@ function Routing() {
             <Switch>
             <Route path="/test/:isSubmitDisabled" component={Test}/>
             <Route path="/app" component={App} />                   
+            <Route path="/lottery" component={Lottery} />                   
             <Route path="/" component={Rooter} />                   
            </Switch>
         </div>

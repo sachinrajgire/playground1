@@ -49,6 +49,7 @@ const [specialization,setSpecialization] =useState("")
 const [universityName,setUniversityName] =useState("")
 const [isSubmitDisabled,setIsSubmitDisabled] =useState(false)
 
+console.log(deletedRecords,'deletedRecords');
 // console.log(data,deletedRecords,'data deleted records');
 const history= useHistory()
 
@@ -85,32 +86,33 @@ function createNewRecord() {
 }
 
 function deleteRecord (Id) {
-let deletedRecord= data.find((i)=>{
+
+let deletedRecord= data.filter((i)=>{
  return i.Id ===Id 
 })
 console.log(deletedRecord,'deletedRecord');
 
 let  copyDelRecords=[...deletedRecords]
-copyDelRecords.push(deletedRecord)
+copyDelRecords.push(deletedRecord[0])
 setDeletedRecords(copyDelRecords)
-setDeletedRecords(deletedRecord)
 
 /////////Logic for updating screen
 let remainingRecord= data.filter((i)=>{
     return i.Id !==Id 
-   })
+   })   
 setData(remainingRecord)
 console.log(remainingRecord,'remainingRecord');
 }
+
 useEffect(()=>{
 setData(uuidData)
 },[])
 
 function handleRetrieveAllRecords() {
-// let mergedRecords = data.concat(mergedRecords)
-// console.log(mergedRecords,'mergedRecords');
-// setData(mergedRecords)
-// setDeletedRecords([])
+let mergedRecords = [...deletedRecords,...data]
+console.log(mergedRecords,'mergedRecords');
+setData(mergedRecords)
+setDeletedRecords([])
 }
 
 const univName =data.map((i,idx)=>{
@@ -137,6 +139,7 @@ return (
    <div>
 <button onClick={()=>setFav([])}>Clear All Favorites</button>
 <button onClick={()=>history.push("/")}>Go Home </button>
+<button onClick={()=>handleRetrieveAllRecords()}>Retrieve All Records</button>
 <button onClick={()=>history.push(`/test?isSubmitDisabled=${isSubmitDisabled}`)}>Test</button>
        </div> 
 Here are your favorite companies 

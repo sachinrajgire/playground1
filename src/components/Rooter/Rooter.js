@@ -16,6 +16,8 @@ function Rooter() {
       </div>
       <div className='box'>
       <Link to="/app">Main App</Link>
+      <span style={{marginLeft:'20px'}}><Link to="/lottery">Lottery</Link></span>
+      
       </div>
       <div className='box'>
       <Link to={`/test/${isSubmitDisabled}`}>Test</Link>
