@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'; // ES6
 
 
 
-function Card({Employer, careerUrl, Job_Title, setFav, fav,Id,deleteRecord}) {
+function Card({Employer, careerUrl, Graduation_Year,Job_Title, setFav, fav,Id,deleteRecord}) {
 
 
 //passing arguments normally
@@ -51,6 +51,7 @@ function isFavorite () {
       apply for job
     <div> {Employer}</div>   
     <div>{Job_Title}</div>
+    <div>{Graduation_Year}</div>
     <button onClick={(e)=>handleFavoriteClick(e,Id)}>Favorite</button>
     <button onClick={(e)=>handleUnFavoriteClick(e,Id)}>Unfavorite</button>
     <button onClick={()=>deleteRecord(Id)}>Delete Record</button>
