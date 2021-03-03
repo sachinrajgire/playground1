@@ -11,7 +11,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Form from './components/Form/Form';
 import { Link, Redirect, useHistory } from "react-router-dom";
 import Modal from './components/Modal/Modal'
-import { Button,Input} from 'reactstrap';
+import { Button,Input, FormGroup,Label,} from 'reactstrap';
+import Checkbox from '@material-ui/core/Checkbox';
+import { getByDisplayValue } from '@testing-library/react';
 
 
 let  uuidData = data.map(i=>{
@@ -57,6 +59,10 @@ const [isModelOpen,setIsModalOpen]=useState(false)
 const [viewCurrentRecord,setViewCurrentRecord]=useState({})
 const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
+const [filteredData,setFilteredData]=useState([])
+const [graduationYearFilter,setGraduationYearFilter]=useState({})
+
+console.log(graduationYearFilter,'graduationYearFilter');
 
 
 const history= useHistory()
@@ -119,6 +125,41 @@ useEffect(()=>{
 setData(uuidData)
 },[])
 
+function handleGraduationDateOnChange(year){
+
+    let copyObj= {...graduationYearFilter}
+    copyObj[year]=!copyObj[year]
+ console.log(copyObj,'copyObj');
+ setGraduationYearFilter(copyObj)
+
+}
+useEffect(()=>{
+    let getyears=filteredData.map(i=>i.Graduation_Year)
+    let unique = [...new Set(getyears)];
+ 
+    let obj={}
+unique.forEach(l=>{
+      obj[l]=true
+ })
+  setGraduationYearFilter(obj)
+    
+},[searchInvoked])
+
+function getGraduationYear(){
+
+  return  Object.entries(graduationYearFilter).map(j=>{
+      return  <div style={{display:'inlineFlex'}}>
+     <label>{j[0]}</label>
+     <Checkbox
+        checked={j[1]}
+        onChange={()=>handleGraduationDateOnChange(j[0])}
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
+      </div>
+   })
+    
+}
+
 function handleRetrieveAllRecords() {
 let mergedRecords = [...deletedRecords,...data]
 console.log(mergedRecords,'mergedRecords');
@@ -126,8 +167,8 @@ setData(mergedRecords)
 setDeletedRecords([])
 }
 
-const univName =filterLogic().map((i,idx)=>{
-const {Employer, Career_Url, Job_Title,Id} = i 
+const univName =filterLogic().map((i,idx,arr)=>{
+const {Employer, Career_Url, Job_Title,Id,Graduation_Year} = i 
 
 return (
     <div className='cardDiv' onClick={()=>handleCardContainerOnClick(Id)}>
@@ -135,6 +176,7 @@ return (
     careerUrl={Career_Url}
     Employer={Employer}
     Job_Title={Job_Title}
+    Graduation_Year={Graduation_Year}
     key={Id} 
     setFav={setFav}
     fav={fav}
@@ -145,28 +187,45 @@ return (
     )
     
 })  
+function handleClear(){
+setSearchText("")
+setSearchInvoked(false)
+}
+function handleSearch () {
+    if(searchText.length ===0){
+        setSearchInvoked(false)
+    }
+    else {
+        setSearchInvoked(true)
+    }
+
+    let copyData =[...data]
+        copyData = copyData.filter(i=>{
+        return i.Employer.toLowerCase().includes(searchText.toLowerCase())
+       }) 
+       console.log(copyData,'copyData');
+    if(setSearchInvoked){
+       setFilteredData(copyData)
+    }
+    
+}
+
 
 function filterLogic () {
 if(searchInvoked){
-    return handleFilters()
+    // return filteredData
+   const filterByYear= filteredData.filter((i)=>{
+ const gradYear = i.Graduation_Year 
+return graduationYearFilter[gradYear]
+   })
+   return filterByYear
 }
     return data
 }
 
-function handleFilters(){
-let copyData =[...data]
-
-   copyData = copyData.filter(i=>{
-    return i.Employer.toLowerCase().includes(searchText.toLowerCase())
-   }) 
-   console.log(copyData,'copyData');
-
-   return copyData
-
-}
 return (  
 
-<div>
+<div className='container'>
    <div>
 {/* <Modal 
 buttonLabel="Open"
@@ -181,10 +240,17 @@ body={"I am body of the Modal"}
        </div> 
 Here are your favorite companies 
 <div>
-<input placeholder='Search with Company name'  onChange={(e)=>setSearchText(e.target.value)}/>
-<Button onClick={()=>setSearchInvoked(true)} color="primary">Search</Button>
+<input placeholder='Search with Company name'  value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
+<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
+{searchInvoked && <div>
+     <Button onClick={()=>handleClear()} color="primary">Clear</Button>
+     {getGraduationYear()}
+
 </div>
-<div>{`Total record :::${data.length}`}</div>
+
+}
+</div>
+<div>{`Total record :::${filterLogic().length}`}</div>
 <div>{`Total deleted record :::${deletedRecords.length}`}</div>
 {/* <Modal
 buttonLabel="Open"

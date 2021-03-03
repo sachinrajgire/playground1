@@ -1,8 +1,8 @@
 
 
 .container {
-    display:flex;
-    flex-direction: column;
+    /* display:flex; */
+    /* flex-direction: column; */
     margin:5vw;
 }
 
@@ -57,6 +57,6 @@ margin:20px;
 
 .cardDiv:hover {
  background-color: azure;
- border:10px solid grey;
+ border:2px solid yellow;
 
   }
