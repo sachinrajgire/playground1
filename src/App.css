@@ -53,3 +53,10 @@ margin:20px;
       min-height: 300px;
       margin:20px;
   } 
+
+
+.cardDiv:hover {
+ background-color: azure;
+ border:10px solid grey;
+
+  }

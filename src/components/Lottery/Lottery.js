@@ -42,7 +42,8 @@ setTeam(teamed)
 }
 function handleEmail(){
 
-  let email = `https://mail.google.com/mail/?view=cm&fs=1&to=sachin@wynisco.com&cc=prakashkumar2604@gmail.com&cc=kevinchawla1999@gmail.com&bcc=someone.else@example.com&su=Here are team members&body=${team.join("-")}`
+  let email = `https://mail.google.com/mail/?view=cm&fs=1&to=sachin@wynisco.com&cc=prakashkumar2604@gmail.com
+  &cc=kevinchawla1999@gmail.com&bcc=someone.else@example.com&su=Here are team members&body=${team.join("-")}`
  return  window.location.href=email
  
 }

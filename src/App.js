@@ -5,10 +5,13 @@ import './App.css'
 import './beststyles.scss'
 import data from './Student_Data.json' ;
 import Card from './components/Card/Card';
+import CardDetails from './components/CardDetails/CardDetails';
 import Lottery from './components/Lottery/Lottery';
 import { v4 as uuidv4 } from 'uuid';
 import Form from './components/Form/Form';
 import { Link, Redirect, useHistory } from "react-router-dom";
+import Modal from './components/Modal/Modal'
+import { Button,Input} from 'reactstrap';
 
 
 let  uuidData = data.map(i=>{
@@ -18,6 +21,8 @@ return {
 }
 
 })
+
+
 // console.log(uuidData,'uuidData');
 // Career_Url: "https://ibegin.tcs.com/iBegin/jobs/search"
 // Employer: "TCS"
@@ -48,9 +53,12 @@ const [jobTitle,setJobTitle] =useState("")
 const [specialization,setSpecialization] =useState("")
 const [universityName,setUniversityName] =useState("")
 const [isSubmitDisabled,setIsSubmitDisabled] =useState(false)
+const [isModelOpen,setIsModalOpen]=useState(false)
+const [viewCurrentRecord,setViewCurrentRecord]=useState({})
+const [searchText,setSearchText]=useState("")
+const [searchInvoked,setSearchInvoked]=useState(false)
 
-console.log(deletedRecords,'deletedRecords');
-// console.log(data,deletedRecords,'data deleted records');
+
 const history= useHistory()
 
 function getFavs() {
@@ -81,15 +89,18 @@ let copyData = [objReady,...data]
 setData(copyData)
     
 }
-function createNewRecord() {
+
+function handleCardContainerOnClick (Id) {
+console.log('handleCardContainer Click invoked',Id);  
+let entry =data.filter(i=>i.Id === Id)
+console.log(entry,'filteredEntry');
+setViewCurrentRecord(entry[0])
+setIsModalOpen(true)
 
 }
 
 function deleteRecord (Id) {
-
-let deletedRecord= data.filter((i)=>{
- return i.Id ===Id 
-})
+let deletedRecord= data.filter((i)=>i.Id ===Id)
 console.log(deletedRecord,'deletedRecord');
 
 let  copyDelRecords=[...deletedRecords]
@@ -115,10 +126,11 @@ setData(mergedRecords)
 setDeletedRecords([])
 }
 
-const univName =data.map((i,idx)=>{
+const univName =filterLogic().map((i,idx)=>{
 const {Employer, Career_Url, Job_Title,Id} = i 
 
-    return (
+return (
+    <div className='cardDiv' onClick={()=>handleCardContainerOnClick(Id)}>
     <Card 
     careerUrl={Career_Url}
     Employer={Employer}
@@ -129,23 +141,56 @@ const {Employer, Career_Url, Job_Title,Id} = i
     Id={Id}
     deleteRecord={deleteRecord}
     />
+    </div>
     )
     
 })  
-        
+
+function filterLogic () {
+if(searchInvoked){
+    return handleFilters()
+}
+    return data
+}
+
+function handleFilters(){
+let copyData =[...data]
+
+   copyData = copyData.filter(i=>{
+    return i.Employer.toLowerCase().includes(searchText.toLowerCase())
+   }) 
+   console.log(copyData,'copyData');
+
+   return copyData
+
+}
 return (  
 
 <div>
    <div>
+{/* <Modal 
+buttonLabel="Open"
+title="Whats up Title"
+body={"I am body of the Modal"}
+
+/> */}
 <button onClick={()=>setFav([])}>Clear All Favorites</button>
 <button onClick={()=>history.push("/")}>Go Home </button>
 <button onClick={()=>handleRetrieveAllRecords()}>Retrieve All Records</button>
 <button onClick={()=>history.push(`/test?isSubmitDisabled=${isSubmitDisabled}`)}>Test</button>
        </div> 
 Here are your favorite companies 
+<div>
+<input placeholder='Search with Company name'  onChange={(e)=>setSearchText(e.target.value)}/>
+<Button onClick={()=>setSearchInvoked(true)} color="primary">Search</Button>
+</div>
 <div>{`Total record :::${data.length}`}</div>
 <div>{`Total deleted record :::${deletedRecords.length}`}</div>
-
+{/* <Modal
+buttonLabel="Open"
+title="Please enter the form "
+handleFormSubmit={handleFormSubmit}
+>
 <Form 
 careerUrl={careerUrl}
 employer={employer}
@@ -161,14 +206,29 @@ setJobStartYear={setJobStartYear}
 setJobTitle={setJobTitle}
 setSpecialization={setSpecialization}
 setUniversityName={setUniversityName}
-handleFormSubmit={handleFormSubmit}
+
 isSubmitDisabled={isSubmitDisabled}
 />
+</Modal> */}
 
 
+<Modal
+buttonLabel="Open"
+title="Please enter the form "
+handleFormSubmit={handleFormSubmit}
+isModalOpen={isModelOpen}
+setIsModalOpen={setIsModalOpen}
+>
+<CardDetails
+Employer={viewCurrentRecord.Employer}
+careerUrl={viewCurrentRecord.Career_Url}
+Job_Title={viewCurrentRecord.Job_Title}
+Job_Start_Date={viewCurrentRecord.Job_Start_Date}
+Specialization={viewCurrentRecord.Specialization}
+University_Name={viewCurrentRecord.University_Name}
 
-
-
+/>
+</Modal>   
 
 
 <div>

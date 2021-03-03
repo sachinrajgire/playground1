@@ -40,7 +40,7 @@ return true
       
           
         <label>Career Url </label>
-         <input type='text' onChange={(e)=>setCareerUrl(e.target.value)} value={careerUrl}
+         <input type='text' onChange={(e)=>setCareerUrl(e.target.value)} value={careerUrl}  
          placeholder='Please start with http'
          ></input>
          {careerUrl}
@@ -78,11 +78,11 @@ return true
          <input onChange={(e)=>setUniversityName(e.target.value)} value={universityName} type='text'></input>
       {universityName}
         </div>
-
+{/* 
         <div>
            <button type='submit' disabled={handleFormDisable()} onClick={()=>handleFormSubmit()} >SUBMIT </button>
 
-        </div>
+        </div> */}
       
 
    
