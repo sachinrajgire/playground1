@@ -148,14 +148,14 @@ unique.forEach(l=>{
 function getGraduationYear(){
 
   return  Object.entries(graduationYearFilter).map(j=>{
-      return  <div style={{display:'inlineFlex'}}>
+      return  <span style={{display:'inlineFlex'}}>
      <label>{j[0]}</label>
      <Checkbox
         checked={j[1]}
         onChange={()=>handleGraduationDateOnChange(j[0])}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-      </div>
+      </span>
    })
     
 }
@@ -241,12 +241,12 @@ body={"I am body of the Modal"}
 Here are your favorite companies 
 <div>
 <input placeholder='Search with Company name'  value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
-<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
-{searchInvoked && <div>
+<span style={{marginLeft:'20px'}}><Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button></span>
+{searchInvoked && <span style={{marginLeft:'20px'}}>
      <Button onClick={()=>handleClear()} color="primary">Clear</Button>
      {getGraduationYear()}
 
-</div>
+</span>
 
 }
 </div>
