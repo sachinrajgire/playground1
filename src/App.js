@@ -61,9 +61,24 @@ const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
 const [filteredData,setFilteredData]=useState([])
 const [graduationYearFilter,setGraduationYearFilter]=useState({})
+const [page, setPage] =useState([])
 
-console.log(graduationYearFilter,'graduationYearFilter');
+console.log(page,'page')
 
+// console.log(graduationYearFilter,'graduationYearFilter');
+
+
+
+function handlePagination(page){
+    let pageNumber= Number(page)
+    let entriesPerPage =25
+    let copyData=[...data]
+    let returnData= copyData.slice(pageNumber*entriesPerPage,(pageNumber+1)*entriesPerPage)
+    console.log(returnData,'returnData')
+     setSearchInvoked(true)
+     setFilteredData(returnData)
+    console.log(page)
+}
 
 const history= useHistory()
 
@@ -72,6 +87,24 @@ let empData= uuidData.filter(i=>fav.includes(i.Id))
 let returnEmployerName = empData.map(i=>i.Employer)
 return returnEmployerName.join(",")
 }
+
+useEffect(()=>{
+    let entriesPerPage =25
+    let totalEntries = data && data.length
+    let wholePage= Math.ceil(totalEntries/entriesPerPage)
+   let arr=  Array(wholePage).fill(0)
+//    console.log(arr,'arr')
+   let pages=  arr.map((i,idx)=>{
+       return (idx+1).toString()
+    })
+// console.log(pages,'pages');
+    setPage(pages)
+
+},[data])
+// function getPageNumberBar(entriesPerPage=25) {
+
+// console.log(pages,'pages');
+// }   
 
 function handleFormSubmit () {
     console.log('handleFormSubmit invoked')
@@ -96,6 +129,13 @@ setData(copyData)
     
 }
 
+function handleKeyPress (e) {
+console.log(e.onKeyDown,'e.keyCode')
+if(e.which == 13 || e.keyCode == 13){
+    handleSearch()
+}
+
+}
 function handleCardContainerOnClick (Id) {
 console.log('handleCardContainer Click invoked',Id);  
 let entry =data.filter(i=>i.Id === Id)
@@ -105,7 +145,8 @@ setIsModalOpen(true)
 
 }
 
-function deleteRecord (Id) {
+function deleteRecord (e,Id) {
+    e.stopPropagation()
 let deletedRecord= data.filter((i)=>i.Id ===Id)
 console.log(deletedRecord,'deletedRecord');
 
@@ -118,7 +159,7 @@ let remainingRecord= data.filter((i)=>{
     return i.Id !==Id 
    })   
 setData(remainingRecord)
-console.log(remainingRecord,'remainingRecord');
+// console.log(remainingRecord,'remainingRecord');
 }
 
 useEffect(()=>{
@@ -129,7 +170,7 @@ function handleGraduationDateOnChange(year){
 
     let copyObj= {...graduationYearFilter}
     copyObj[year]=!copyObj[year]
- console.log(copyObj,'copyObj');
+//  console.log(copyObj,'copyObj');
  setGraduationYearFilter(copyObj)
 
 }
@@ -238,9 +279,10 @@ body={"I am body of the Modal"}
 <button onClick={()=>handleRetrieveAllRecords()}>Retrieve All Records</button>
 <button onClick={()=>history.push(`/test?isSubmitDisabled=${isSubmitDisabled}`)}>Test</button>
        </div> 
-Here are your favorite companies 
+
+
 <div>
-<input placeholder='Search with Company name'  value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
+<input autoFocus placeholder='Search with Company name' onKeyPress={(e)=>handleKeyPress(e)} value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
 <span style={{marginLeft:'20px'}}><Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button></span>
 {searchInvoked && <span style={{marginLeft:'20px'}}>
      <Button onClick={()=>handleClear()} color="primary">Clear</Button>
@@ -252,6 +294,7 @@ Here are your favorite companies
 </div>
 <div>{`Total record :::${filterLogic().length}`}</div>
 <div>{`Total deleted record :::${deletedRecords.length}`}</div>
+
 {/* <Modal
 buttonLabel="Open"
 title="Please enter the form "
@@ -303,6 +346,13 @@ University_Name={viewCurrentRecord.University_Name}
 </div>
 
 Here is list of companies 
+<div>
+<Button onClick={()=>handleClear()} color="primary">Previous </Button>   
+{page.map(i=>{
+   return  <span className='page' onClick={()=>handlePagination(i)}>{i}</span>
+})}
+<Button onClick={()=>handleClear()} color="primary">Next</Button>
+</div>
 <div>
 {univName}
 </div>
