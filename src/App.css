@@ -58,5 +58,15 @@ margin:20px;
 .cardDiv:hover {
  background-color: azure;
  border:2px solid yellow;
+}
+
+  .page {
+margin-right: 15px;
+color:blue;
 
   }
+
+.page:hover {
+    background-color: azure;
+    border:2px solid yellow;
+   }

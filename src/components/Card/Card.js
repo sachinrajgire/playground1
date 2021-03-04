@@ -10,6 +10,7 @@ function Card({Employer, careerUrl, Graduation_Year,Job_Title, setFav, fav,Id,de
 
 //passing arguments normally
 function handleFavoriteClick(e,Id) {
+  e.stopPropagation()
     const copyfav= [...fav]
     if(copyfav.includes(Id)){
       return alert('Already on the list ')
@@ -19,6 +20,7 @@ function handleFavoriteClick(e,Id) {
 }
 
 function handleUnFavoriteClick(e,Id) {
+  e.stopPropagation()
     const copyfav= [...fav]
     if(!copyfav.includes(Id)){
       return alert('You have not favorite it yet  ')
@@ -54,7 +56,7 @@ function isFavorite () {
     <div>{Graduation_Year}</div>
     <button onClick={(e)=>handleFavoriteClick(e,Id)}>Favorite</button>
     <button onClick={(e)=>handleUnFavoriteClick(e,Id)}>Unfavorite</button>
-    <button onClick={()=>deleteRecord(Id)}>Delete Record</button>
+    <button onClick={(e)=>deleteRecord(e,Id)}>Delete Record</button>
     
     
     </div>)

@@ -23,7 +23,10 @@ function Rooter() {
       <Link to={`/test/${isSubmitDisabled}`}>Test</Link>
       </div>
       <div className='box'>
-      <a href="https://github.com/sachinrajgire/playground1/tree/master">Github</a>
+      <a href="https://github.com/sachinrajgire/playground1/tree/master">Github</a>{' '}
+      <a href="https://studentbe.herokuapp.com/">BackEnd link</a>{' '}
+      <a href="https://reaction-sachin-rajgire.netlify.app">{`Front End Link`}</a>{''}
+      
       </div>
       <div className='box'>
       <a href="https://docs.google.com/spreadsheets/d/1ks0VXY6EliB37xT4OsL3CIQRA3XGaIrmATz0i4dYfYI/edit#gid=0">Student Records</a>
