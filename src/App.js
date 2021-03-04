@@ -14,6 +14,8 @@ import Modal from './components/Modal/Modal'
 import { Button,Input, FormGroup,Label,} from 'reactstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 import { getByDisplayValue } from '@testing-library/react';
+import axios from 'axios';
+
 
 
 let  uuidData = data.map(i=>{
@@ -224,6 +226,20 @@ return (
     )
     
 })  
+function getData () {
+
+    axios.get('https://studentbe.herokuapp.com/allrecords')
+   .then(res=>console.log(res))
+   .catch(e=>console.log(e))
+   
+   }
+   
+   
+   useEffect(()=>{
+   getData()
+   
+   },[searchText])
+   
 function handleClear(){
 setSearchText("")
 setSearchInvoked(false)
