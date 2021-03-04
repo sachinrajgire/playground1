@@ -61,23 +61,22 @@ const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
 const [filteredData,setFilteredData]=useState([])
 const [graduationYearFilter,setGraduationYearFilter]=useState({})
+const [currentPage,setCurrentPage]=useState(1)
 const [page, setPage] =useState([])
+const [entriesPerPage, setEntriesPerPage] = useState(25)
 
 console.log(page,'page')
+console.log(page.length,'page.length')
+console.log(currentPage,'currentPage')
+console.log(page.length ==   currentPage-1)
 
-// console.log(graduationYearFilter,'graduationYearFilter');
 
-
-
-function handlePagination(page){
-    let pageNumber= Number(page)
-    let entriesPerPage =25
+function getSliced(){
     let copyData=[...data]
-    let returnData= copyData.slice(pageNumber*entriesPerPage,(pageNumber+1)*entriesPerPage)
-    console.log(returnData,'returnData')
-     setSearchInvoked(true)
-     setFilteredData(returnData)
-    console.log(page)
+    let returnData= copyData.slice((currentPage-1) * entriesPerPage,currentPage*entriesPerPage)
+    console.log((currentPage-1)*entriesPerPage,(currentPage)*entriesPerPage ,'SLICED ')
+    // console.log(returnData,'returnData')
+    return returnData
 }
 
 const history= useHistory()
@@ -89,22 +88,19 @@ return returnEmployerName.join(",")
 }
 
 useEffect(()=>{
-    let entriesPerPage =25
+  
     let totalEntries = data && data.length
     let wholePage= Math.ceil(totalEntries/entriesPerPage)
    let arr=  Array(wholePage).fill(0)
 //    console.log(arr,'arr')
    let pages=  arr.map((i,idx)=>{
-       return (idx+1).toString()
+       return (idx+1)
     })
 // console.log(pages,'pages');
     setPage(pages)
 
 },[data])
-// function getPageNumberBar(entriesPerPage=25) {
-
-// console.log(pages,'pages');
-// }   
+  
 
 function handleFormSubmit () {
     console.log('handleFormSubmit invoked')
@@ -208,7 +204,7 @@ setData(mergedRecords)
 setDeletedRecords([])
 }
 
-const univName =filterLogic().map((i,idx,arr)=>{
+const univName =getSliced().map((i,idx,arr)=>{
 const {Employer, Career_Url, Job_Title,Id,Graduation_Year} = i 
 
 return (
@@ -329,7 +325,7 @@ isModalOpen={isModelOpen}
 setIsModalOpen={setIsModalOpen}
 >
 <CardDetails
-Employer={viewCurrentRecord.Employer}
+Employer={viewCurrentRecord.Employer}       
 careerUrl={viewCurrentRecord.Career_Url}
 Job_Title={viewCurrentRecord.Job_Title}
 Job_Start_Date={viewCurrentRecord.Job_Start_Date}
@@ -347,11 +343,11 @@ University_Name={viewCurrentRecord.University_Name}
 
 Here is list of companies 
 <div>
-<Button onClick={()=>handleClear()} color="primary">Previous </Button>   
+<Button onClick={()=>setCurrentPage(currentPage-1)} disabled={page[0] === currentPage} color="primary">Previous </Button>   
 {page.map(i=>{
-   return  <span className='page' onClick={()=>handlePagination(i)}>{i}</span>
+   return  <span className={i !== currentPage ? `page` : `highlightedpage`} onClick={()=>setCurrentPage(i)}>{i}</span>
 })}
-<Button onClick={()=>handleClear()} color="primary">Next</Button>
+<Button disabled={page.length === currentPage} onClick={()=>setCurrentPage(currentPage+1)} color="primary">Next</Button>
 </div>
 <div>
 {univName}
