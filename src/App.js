@@ -99,7 +99,7 @@ useEffect(()=>{
 // console.log(pages,'pages');
     setPage(pages)
 
-},[data])
+},[data,entriesPerPage])
   
 
 function handleFormSubmit () {
@@ -348,6 +348,9 @@ Here is list of companies
    return  <span className={i !== currentPage ? `page` : `highlightedpage`} onClick={()=>setCurrentPage(i)}>{i}</span>
 })}
 <Button disabled={page.length === currentPage} onClick={()=>setCurrentPage(currentPage+1)} color="primary">Next</Button>
+<label>Enter number of records per page </label>
+<input onBlur={(e)=>setEntriesPerPage(e.target.value)} type='number' />
+
 </div>
 <div>
 {univName}
