@@ -3,7 +3,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './App.css'
 import './beststyles.scss'
-import data from './Student_Data.json' ;
 import Card from './components/Card/Card';
 import CardDetails from './components/CardDetails/CardDetails';
 import Lottery from './components/Lottery/Lottery';
@@ -14,20 +13,13 @@ import Modal from './components/Modal/Modal'
 import { Button,Input, FormGroup,Label,} from 'reactstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 import { getByDisplayValue } from '@testing-library/react';
-import axios from 'axios';
+import Spinner from '@material-ui/core/LinearProgress';
+import axios from './Axios'
 
 
 
-let  uuidData = data.map(i=>{
-return {
-    ...i, 
-    Id: uuidv4()
-}
 
-})
-
-
-// console.log(uuidData,'uuidData');
+// //console.log(uuidData,'uuidData');
 // Career_Url: "https://ibegin.tcs.com/iBegin/jobs/search"
 // Employer: "TCS"
 // Graduation_Year: 2020
@@ -37,13 +29,7 @@ return {
 // University_Name: "University of North Carolina at Charlotte"'
 // Id:2303333303303003
 
-//single source of truth 
 
-// Lifting the state 
-
-// Components
-// Life cycle methods 
-// Mounted , Updated , Unmounted 
 
 function App() {
 const [fav, setFav] =useState([])
@@ -66,25 +52,22 @@ const [graduationYearFilter,setGraduationYearFilter]=useState({})
 const [currentPage,setCurrentPage]=useState(1)
 const [page, setPage] =useState([])
 const [entriesPerPage, setEntriesPerPage] = useState(25)
+const [isDataLoading, setIsDataLoading] = useState(false)
 
-console.log(page,'page')
-console.log(page.length,'page.length')
-console.log(currentPage,'currentPage')
-console.log(page.length ==   currentPage-1)
 
 
 function getSliced(){
     let copyData=[...data]
     let returnData= copyData.slice((currentPage-1) * entriesPerPage,currentPage*entriesPerPage)
-    console.log((currentPage-1)*entriesPerPage,(currentPage)*entriesPerPage ,'SLICED ')
-    // console.log(returnData,'returnData')
+    //console.log((currentPage-1)*entriesPerPage,(currentPage)*entriesPerPage ,'SLICED ')
+    // //console.log(returnData,'returnData')
     return returnData
 }
 
 const history= useHistory()
 
 function getFavs() {
-let empData= uuidData.filter(i=>fav.includes(i.Id))
+let empData= data.filter(i=>fav.includes(i.Id))
 let returnEmployerName = empData.map(i=>i.Employer)
 return returnEmployerName.join(",")
 }
@@ -94,18 +77,18 @@ useEffect(()=>{
     let totalEntries = data && data.length
     let wholePage= Math.ceil(totalEntries/entriesPerPage)
    let arr=  Array(wholePage).fill(0)
-//    console.log(arr,'arr')
+//    //console.log(arr,'arr')
    let pages=  arr.map((i,idx)=>{
        return (idx+1)
     })
-// console.log(pages,'pages');
+// //console.log(pages,'pages');
     setPage(pages)
 
 },[data,entriesPerPage])
   
 
 function handleFormSubmit () {
-    console.log('handleFormSubmit invoked')
+    //console.log('handleFormSubmit invoked')
     setIsSubmitDisabled(true)
     setTimeout(()=>{
         setIsSubmitDisabled(false)
@@ -128,25 +111,39 @@ setData(copyData)
 }
 
 function handleKeyPress (e) {
-console.log(e.onKeyDown,'e.keyCode')
+//console.log(e.onKeyDown,'e.keyCode')
 if(e.which == 13 || e.keyCode == 13){
     handleSearch()
 }
 
 }
+// function handleCardContainerOnClick (Id) {
+// //console.log('handleCardContainer Click invoked',Id);  
+// let entry =data.filter(i=>i.Id === Id)
+// //console.log(entry,'filteredEntry');
+// setViewCurrentRecord(entry[0])
+// setIsModalOpen(true)
+// }
 function handleCardContainerOnClick (Id) {
-console.log('handleCardContainer Click invoked',Id);  
-let entry =data.filter(i=>i.Id === Id)
-console.log(entry,'filteredEntry');
-setViewCurrentRecord(entry[0])
-setIsModalOpen(true)
-
+   history.push(`/app/recorddetails/${Id}`)
 }
+
+//click on container - route to new component 
+//new component 
+// push new route to stack 
+// new route app/recordetails -- New Component 
+// useHistory - /app/recorddetails?id='fdfd-fdd
+// New Compnet - useParams -- "fdfd-fdd"
+// useEffect ( make the backend end call and attacht to request )
+// back end with one record 
+//show it on screen using Card Component  
+
+
 
 function deleteRecord (e,Id) {
     e.stopPropagation()
 let deletedRecord= data.filter((i)=>i.Id ===Id)
-console.log(deletedRecord,'deletedRecord');
+//console.log(deletedRecord,'deletedRecord');
 
 let  copyDelRecords=[...deletedRecords]
 copyDelRecords.push(deletedRecord[0])
@@ -157,18 +154,28 @@ let remainingRecord= data.filter((i)=>{
     return i.Id !==Id 
    })   
 setData(remainingRecord)
-// console.log(remainingRecord,'remainingRecord');
+// //console.log(remainingRecord,'remainingRecord');
 }
-
+// componentDidMount
 useEffect(()=>{
-setData(uuidData)
+setIsDataLoading(true)
+axios.get('/allrecords')
+.then(res=>{
+    console.log(res)
+    setData(res.data)
+    setIsDataLoading(false)
+})
+.catch(e=>{
+    setIsDataLoading(false)
+    console.log(e)
+})
 },[])
 
 function handleGraduationDateOnChange(year){
 
     let copyObj= {...graduationYearFilter}
     copyObj[year]=!copyObj[year]
-//  console.log(copyObj,'copyObj');
+//  //console.log(copyObj,'copyObj');
  setGraduationYearFilter(copyObj)
 
 }
@@ -201,7 +208,7 @@ function getGraduationYear(){
 
 function handleRetrieveAllRecords() {
 let mergedRecords = [...deletedRecords,...data]
-console.log(mergedRecords,'mergedRecords');
+//console.log(mergedRecords,'mergedRecords');
 setData(mergedRecords)
 setDeletedRecords([])
 }
@@ -226,19 +233,7 @@ return (
     )
     
 })  
-function getData () {
 
-    axios.get('https://studentbe.herokuapp.com/allrecords')
-   .then(res=>console.log(res))
-   .catch(e=>console.log(e))
-   
-   }
-   
-   
-   useEffect(()=>{
-   getData()
-   
-   },[searchText])
    
 function handleClear(){
 setSearchText("")
@@ -256,7 +251,7 @@ function handleSearch () {
         copyData = copyData.filter(i=>{
         return i.Employer.toLowerCase().includes(searchText.toLowerCase())
        }) 
-       console.log(copyData,'copyData');
+       //console.log(copyData,'copyData');
     if(setSearchInvoked){
        setFilteredData(copyData)
     }
@@ -276,16 +271,16 @@ return graduationYearFilter[gradYear]
     return data
 }
 
+if(isDataLoading){
+   return <Spinner />
+}
+
 return (  
 
 <div className='container'>
-   <div>
-{/* <Modal 
-buttonLabel="Open"
-title="Whats up Title"
-body={"I am body of the Modal"}
 
-/> */}
+<div>
+
 <button onClick={()=>setFav([])}>Clear All Favorites</button>
 <button onClick={()=>history.push("/")}>Go Home </button>
 <button onClick={()=>handleRetrieveAllRecords()}>Retrieve All Records</button>
