@@ -18,7 +18,6 @@ import axios from './Axios'
 
 
 
-
 // //console.log(uuidData,'uuidData');
 // Career_Url: "https://ibegin.tcs.com/iBegin/jobs/search"
 // Employer: "TCS"
@@ -28,7 +27,6 @@ import axios from './Axios'
 // Specialization: "Computer Science"
 // University_Name: "University of North Carolina at Charlotte"'
 // Id:2303333303303003
-
 
 
 function App() {
