@@ -1,14 +1,11 @@
 
 import axios from 'axios';
 
-let baseURL="https://studentbe.herokuapp.com/"
+let baseURL=process.env.REACT_APP_BACKEND_URL
 
-if(process.env.NODE_ENV === 'production') {
-    baseURL='https://studentbe.herokuapp.com/'
-}
 
 export default axios.create({
-    baseURL,
+    baseURL
   });
 
 
