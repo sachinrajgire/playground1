@@ -157,6 +157,7 @@ setData(remainingRecord)
 // componentDidMount
 useEffect(()=>{
 setIsDataLoading(true)
+
 axios.get('/allrecords')
 .then(res=>{
     console.log(res)
@@ -168,6 +169,13 @@ axios.get('/allrecords')
     console.log(e)
 })
 },[])
+// Lift the state up
+// save in localstorage or sessionStorage
+// save in Context 
+// Saving in redux state 
+
+
+
 
 function handleGraduationDateOnChange(year){
 
