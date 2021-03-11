@@ -24,7 +24,7 @@ const [team,setTeam] =useState([])
 let hist = useHistory()
 
 //passing arguments normally
-function handleLottery(e,Employer1) {
+function handleLottery(e,companyName1) {
 
     let count = []
     while(true) {

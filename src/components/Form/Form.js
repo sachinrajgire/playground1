@@ -12,12 +12,12 @@ function Form({
     specialization,
     universityName,
     setCareerUrl,
-    setEmployer,
+    setcompanyName,
     setGraduationDate,
     setJobStartYear,
     setJobTitle,
     setUniversityName,
-    setSpecialization,
+    setspecialization,
     handleFormSubmit,
     isSubmitDisabled
 
@@ -46,8 +46,8 @@ return true
          {careerUrl}
         </div>
 
-        <div><label>Employer </label>
-      <input onChange={(e)=>setEmployer(e.target.value)} value={employer} type='text'
+        <div><label>companyName </label>
+      <input onChange={(e)=>setcompanyName(e.target.value)} value={employer} type='text'
 
       
       ></input>
@@ -69,12 +69,12 @@ return true
      {jobTitle}
         </div>
         <div>
-        <label>Specialization</label>
-      <input onChange={(e)=>setSpecialization(e.target.value)} value={specialization} type='text'></input>
+        <label>specialization</label>
+      <input onChange={(e)=>setspecialization(e.target.value)} value={specialization} type='text'></input>
      {specialization}
         </div>
         <div>
-        <label> University_Name </label>
+        <label> universityName </label>
          <input onChange={(e)=>setUniversityName(e.target.value)} value={universityName} type='text'></input>
       {universityName}
         </div>

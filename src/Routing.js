@@ -4,24 +4,24 @@ import React, { Fragment, useEffect, useState } from 'react';
 import App from './App' ;
 import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
-import RecordDetails from './components/RecordDetails/RecordDetails'
 import Carousel from './components/Carousel/Carousel'
-import Form from './components/Form/Form'
-import Test from './components/Test/Test'
+
 import {
     Switch,
     Route,
     Redirect
   } from "react-router-dom";
+import { StoreMallDirectory } from '@material-ui/icons';
+
+
 
 
 function Routing() {
 
+   
     return (
         <div>
             <Switch>
-            <Route path="/test/:isSubmitDisabled" component={Test}/>
-            <Route path="/app/recorddetails/:Id" component={RecordDetails}/>
             <Route path="/app" component={App} />                   
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
@@ -30,7 +30,6 @@ function Routing() {
         </div>
     )
  
-     
 
 }
 

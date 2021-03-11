@@ -66,21 +66,7 @@ color:blue;
 
   }
 
-.page {
-margin-right: 15px;
-margin-left: 10px;
-color:blue;
-padding-left: 10px;
 
-}
-
-.highlightedpage {
-margin-right: 15px;
-color:blue;
-font-size: 26px;
-font-weight: bolder;
-
-  }
 
 .page:hover {
     margin-right: 15px;
