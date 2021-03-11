@@ -10,7 +10,6 @@ import Spinner from '@material-ui/core/LinearProgress';
 import axios from './Axios'
 
 function App() {
-const [fav, setFav] =useState([])
 const [data, setData]=useState([])
 const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
@@ -22,7 +21,7 @@ const history= useHistory()
 
 function handleKeyPress (e) {
 if(e.which == 13 || e.keyCode == 13){
-    setSearchInvoked(true)
+    handleSearch()
 }
 }
 
@@ -43,6 +42,7 @@ axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
 },[])
 
 function getNext(){
+    setIsDataLoading(true)
     axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
 .then(res=>{
     console.log(res)
@@ -56,6 +56,23 @@ function getNext(){
 })
 }
 
+function handleSearch () {
+    setSearchInvoked(true)
+    setIsDataLoading(true)
+
+    axios.get(`v1/record/search?searchText=${searchText}`)
+    .then(res=>{
+        console.log(res)
+        setData(res.data)
+        setIsDataLoading(false)
+
+})
+    .catch(e=>{
+        setIsDataLoading(false)
+        console.log(e)
+    }) 
+
+}
 
 useEffect(()=>{
 if(data && data.length) {
@@ -64,44 +81,6 @@ if(data && data.length) {
 }
 
 },[data])
-
-useEffect(()=>{
-//     setIsDataLoading(true)
-
-//     axios.get(`v1/record/search?searchText=${searchText}`)
-//     .then(res=>{
-//         console.log(res)
-//         setData(res.data)
-//         setIsDataLoading(false)
-//         setSearchInvoked(false)
-
-// })
-//     .catch(e=>{
-//         setIsDataLoading(false)
-//         setSearchInvoked(false)
-//         console.log(e)
-//     }) 
-    
-},[searchInvoked])
-
-// const univName =data.map((i)=>{
-// const {companyName, careerUrl, jobTitle,Id,graduationYear} = i 
-
-// return (
-//     <div className='cardDiv' onClick={()=>handleCardContainerOnClick(Id)}>
-//     <Card 
-//     careerUrl={careerUrl}
-//     companyName={companyName}
-//     jobTitle={jobTitle}
-//     graduationYear={graduationYear}
-//     key={Id} 
-//     setFav={setFav}
-//     fav={fav}
-//     Id={Id}
-//     />
-//     </div>
-//     )
-// })  
 
    
 function handleClear(){
@@ -123,24 +102,16 @@ return (
 onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="exampleEmail" placeholder="Search..." />
 <div style={{margin:'20px'}}>
 
-<Button disabled={searchInvoked} onClick={()=>setSearchInvoked(true)} color="primary">Search</Button>
-<span style={{marginLeft:'20px'}}><Button disabled={searchInvoked} onClick={()=>handleClear()} color="primary">Clear</Button></span>
-</div>
-
-</Col>
-
-{searchInvoked && <span style={{marginLeft:'20px'}}>
-     <Button onClick={()=>handleClear()} color="primary">Clear</Button>
-
-</span>
-
+<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
+{searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
 }
-
 </div>
-
-
+</Col>
+</div>
 <div>
-{/* {univName} */}
+<div style={{margin:'20px',textAlign:'right'}}>
+<Button onClick={()=>getNext()} color="secondary">Next</Button>
+</div>
 <DataTable 
 data={data}
 />
