@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Routing from './Routing';
 import reportWebVitals from './reportWebVitals';
-import Form from './components/Form/Form';
 import { Auth0Provider } from "@auth0/auth0-react";
 import {
   BrowserRouter as Router,

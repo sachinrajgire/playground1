@@ -1,7 +1,7 @@
-import React ,{useState} from 'react';
-import './form.scss';
-//validations
-//errorstate
+import React ,{useEffect, useState} from 'react';
+import './edit-record.scss';
+import { Link, Redirect, useHistory,useParams,useLocation } from "react-router-dom";
+
 
 function Form({
     careerUrl,
@@ -22,14 +22,20 @@ function Form({
     isSubmitDisabled
 
 }) {
+// const params = useLocation()
+// console.log(params,'params');
 
+useEffect(()=>{
+  const windowUrl = window.location.search;
+  const params = new URLSearchParams(windowUrl)
+  console.log(params,'params');
+},[])
 
 function handleFormDisable () {
 let elen= employer.length
 if(elen >=2 && elen <=20 && !isSubmitDisabled){
     return false 
 }
-
 return true
 }
 // console.log(children,'children');

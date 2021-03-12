@@ -7,14 +7,24 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Url from '../Url/Url';
+import {formattedDate} from '../../helpers/timeanddateHelpers';
+import moment from 'moment'
+
 import { Badge } from 'reactstrap';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory
+} from "react-router-dom";
 
 
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: '#ffd51e',
+    color: 'black',
   },
   body: {
     fontSize: 14,
@@ -32,13 +42,14 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 900,
   },
 });
 
 export default function CustomizedTables({data}) {
     console.log(data,'data')
   const classes = useStyles();
+  const history= useHistory()
 
   return (
     <TableContainer component={Paper}>
@@ -53,6 +64,7 @@ export default function CustomizedTables({data}) {
             <StyledTableCell align="right">Graduation Year</StyledTableCell>
             <StyledTableCell align="right">Specialization</StyledTableCell>
             <StyledTableCell align="right">Career Link</StyledTableCell>
+            <StyledTableCell align="right">Edit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,14 +74,15 @@ export default function CustomizedTables({data}) {
                 {row.company.companyName}
               </StyledTableCell>
               <StyledTableCell align="right">{row.jobTitle}</StyledTableCell>
-              <StyledTableCell align="right">{row.jobStartDate}</StyledTableCell>
+              <StyledTableCell align="right">{formattedDate(row.jobStartDate).format1}</StyledTableCell>
               <StyledTableCell align="right">{row.universityName}</StyledTableCell>
               <StyledTableCell align="right">{row.graduationYear}</StyledTableCell>
               <StyledTableCell align="right">{row.specialization}</StyledTableCell>
               <StyledTableCell align="right" >
-                  
                   <a href={`${row.company.careerUrl}`} target="_blank">Apply</a>
-                  
+                </StyledTableCell>
+              <StyledTableCell align="right" onClick={()=>history.push(`/editrecord`)} >
+                 <Url>Edit</Url>
                   </StyledTableCell>
             </StyledTableRow>
           ))}
