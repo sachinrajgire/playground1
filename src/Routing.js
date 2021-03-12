@@ -6,6 +6,7 @@ import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
 import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
+import EditRecord from './components/EditRecord/EditRecord';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from '@material-ui/core/LinearProgress';
@@ -35,10 +36,12 @@ function Routing() {
       
 //
 // adminstritor enter 
-if(isLoading) {
-return <Spinner />
+// if(isLoading) {
+// return <Spinner />
 
-}
+// }
+
+
 
     return (
         <div>
@@ -46,15 +49,17 @@ return <Spinner />
             <Route path="/app" component={App} />                   
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
+            <Route path="/editrecord" component={EditRecord} />                   
             <Route path="/login" component={Login} />                   
-                              
-          {isAuthenticated && user.email==='sachin@wynisco.com'
-          ? <Route path="/dashboard" component={Dashboard} />
-          : loginWithRedirect()
-        }
-            
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/" component={Rooter} />   
 
-           <Route path="/" component={Rooter} />                 
+            {/* {isAuthenticated && user.email==='sachin@wynisco.com'
+          ? <Route path="/dashboard" component={Dashboard} />
+          : <Route path="/dashboa" component={Login} />
+          
+        } */}
+
            </Switch>
         </div>
     )
