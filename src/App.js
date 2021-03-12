@@ -4,10 +4,22 @@ import React, { Fragment, useEffect, useState } from 'react';
 import './App.css'
 import './beststyles.scss'
 import DataTable from './components/DataTable/DataTable';
+import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Button,Input, FormGroup,Label,Col} from 'reactstrap';
 import Spinner from '@material-ui/core/LinearProgress';
-import axios from './Axios'
+import axios from './Axios';
+import {XYPlot, LineSeries, VerticalBarSeries, XAxis, YAxis} from 'react-vis';
+
+
+const visData = [
+    {x: 'Amazon', y: 8},
+    {x: 'Faceb', y: 5},
+    {x: 'Goldman', y: 3},
+    {x: 'JP', y: 2},
+   
+  ];
 
 function App() {
 const [data, setData]=useState([])
@@ -18,6 +30,7 @@ const [nextCursor, setNextCursor] = useState(null)
 console.log(nextCursor,'nextCursor');
 
 const history= useHistory()
+
 
 function handleKeyPress (e) {
 if(e.which == 13 || e.keyCode == 13){
@@ -102,11 +115,21 @@ return (
 onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="exampleEmail" placeholder="Search..." />
 <div style={{margin:'20px'}}>
 
+{/* <XYPlot height={300} width={300} xType="ordinal">
+<VerticalBarSeries data={visData} />
+<XAxis/>
+<YAxis/>
+</XYPlot> */}
+
 <Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
 {searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
 }
 </div>
 </Col>
+</div>
+<div>
+    <Login />
+    <Logout />
 </div>
 <div>
 <div style={{margin:'20px',textAlign:'right'}}>
