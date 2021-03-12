@@ -6,20 +6,13 @@ import './beststyles.scss'
 import DataTable from './components/DataTable/DataTable';
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
-import { Link, Redirect, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { Button,Input, FormGroup,Label,Col} from 'reactstrap';
 import Spinner from '@material-ui/core/LinearProgress';
 import axios from './Axios';
-import {XYPlot, LineSeries, VerticalBarSeries, XAxis, YAxis} from 'react-vis';
+import TopEmployers from './components/Visualizations/TopEmployers/TopEmployers';
+import NavBar from './components/NavBar/NavBar';
 
-
-const visData = [
-    {x: 'Amazon', y: 8},
-    {x: 'Faceb', y: 5},
-    {x: 'Goldman', y: 3},
-    {x: 'JP', y: 2},
-   
-  ];
 
 function App() {
 const [data, setData]=useState([])
@@ -109,24 +102,9 @@ return (
 
 <div className='container'>
 
-<div>
-<Col sm={4} >
-<Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
-onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="exampleEmail" placeholder="Search..." />
-<div style={{margin:'20px'}}>
 
-{/* <XYPlot height={300} width={300} xType="ordinal">
-<VerticalBarSeries data={visData} />
-<XAxis/>
-<YAxis/>
-</XYPlot> */}
-
-<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
-{searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
-}
-</div>
-</Col>
-</div>
+{/* <TopEmployers /> */}
+<NavBar>
 <div>
     <Login />
     <Logout />
@@ -135,14 +113,26 @@ onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="examp
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>
+<Col sm={4} >
+<Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
+onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="exampleEmail" placeholder="Search..." />
+<div style={{margin:'20px'}}>
+<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
+{searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
+}
+</div>
+</Col>
 <DataTable 
 data={data}
 />
 </div>
+<div>
+
+</div>
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>
-    
+</NavBar>  
 </div>
 
 

@@ -6,6 +6,7 @@ import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
 import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
+import Visualizations from './components/Visualizations';
 import EditRecord from './components/EditRecord/EditRecord';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -49,6 +50,7 @@ function Routing() {
             <Route path="/app" component={App} />                   
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
+            <Route path="/visualizations" component={Visualizations} />                   
             <Route path="/editrecord" component={EditRecord} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/dashboard" component={Dashboard} />
