@@ -61,7 +61,7 @@ export default function CustomizedTables({data}) {
             <StyledTableCell align="right">Job Title</StyledTableCell>
             <StyledTableCell align="right">Job Start Date</StyledTableCell>
             <StyledTableCell align="right">University Name</StyledTableCell>
-            <StyledTableCell align="right">Graduation Year</StyledTableCell>
+            <StyledTableCell align="right">Graduation Date</StyledTableCell>
             <StyledTableCell align="right">Specialization</StyledTableCell>
             <StyledTableCell align="right">Career Link</StyledTableCell>
             <StyledTableCell align="right">Edit</StyledTableCell>
@@ -76,12 +76,12 @@ export default function CustomizedTables({data}) {
               <StyledTableCell align="right">{row.jobTitle}</StyledTableCell>
               <StyledTableCell align="right">{formattedDate(row.jobStartDate).format1}</StyledTableCell>
               <StyledTableCell align="right">{row.universityName}</StyledTableCell>
-              <StyledTableCell align="right">{row.graduationYear}</StyledTableCell>
+              <StyledTableCell align="right">{formattedDate(row.graduationDate).format1}</StyledTableCell>
               <StyledTableCell align="right">{row.specialization}</StyledTableCell>
               <StyledTableCell align="right" >
                   <a href={`${row.company.careerUrl}`} target="_blank">Apply</a>
                 </StyledTableCell>
-              <StyledTableCell align="right" onClick={()=>history.push(`/editrecord`)} >
+              <StyledTableCell align="right" onClick={()=>history.push(`/editrecord/${row._id}`)} >
                  <Url>Edit</Url>
                   </StyledTableCell>
             </StyledTableRow>

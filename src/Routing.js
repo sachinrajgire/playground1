@@ -6,8 +6,9 @@ import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
 import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
+import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
-import EditRecord from './components/EditRecord/EditRecord';
+import NewEditLauncher from './components/EditRecord/NewEditLauncher';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from '@material-ui/core/LinearProgress';
@@ -17,6 +18,7 @@ import {
     Redirect,
     useHistory
   } from "react-router-dom";
+import NewEditRecord from './components/EditRecord/NewEditRecord';
 
 
 function Routing() {
@@ -51,9 +53,10 @@ function Routing() {
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
             <Route path="/visualizations" component={Visualizations} />                   
-            <Route path="/editrecord" component={EditRecord} />                   
+            <Route path="/editrecord/:Id" component={NewEditLauncher} />                   
+            <Route path="/createnewrecord" component={NewEditRecord} />                   
             <Route path="/login" component={Login} />                   
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/administration" component={Administration} />
             <Route path="/" component={Rooter} />   
 
             {/* {isAuthenticated && user.email==='sachin@wynisco.com'
