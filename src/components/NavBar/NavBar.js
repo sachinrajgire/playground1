@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const defaultMenu = [
-    {label:'Home',url:'/'},
+    {label:'Home',url:'/app'},
     {label:'Visualizations',url:'/visualizations'},
     {label:'Administration',url:'/administration'},
 ]
