@@ -69,7 +69,7 @@ export default function CustomizedTables({data}) {
         </TableHead>
         <TableBody>
           {data && data.map((row) => (
-            <StyledTableRow key={row.companyName}>
+            <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
                 {row.company.companyName}
               </StyledTableCell>
