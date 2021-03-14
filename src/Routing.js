@@ -8,7 +8,8 @@ import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
 import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
-import NewEditLauncher from './components/EditRecord/NewEditLauncher';
+import NewEditRecordLauncher from './components/EditRecord/NewEditRecordLauncher';
+import NewEditCompanyLauncher from './components/EditCompany/NewEditCompanyLauncher';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from '@material-ui/core/LinearProgress';
@@ -53,7 +54,8 @@ function Routing() {
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
             <Route path="/visualizations" component={Visualizations} />                   
-            <Route path="/editrecord/:Id" component={NewEditLauncher} />                   
+            <Route path="/editrecord/:Id" component={NewEditRecordLauncher} />                   
+            <Route path="/editcompany/:Id" component={NewEditCompanyLauncher} />                   
             <Route path="/createnewrecord" component={NewEditRecord} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />

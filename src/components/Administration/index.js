@@ -25,6 +25,10 @@ const Administration = () => {
 <button onClick={() => logout()}>LOG OUT </button>
 </div>
 
+<div style={{margin:'50px'}}>
+<button onClick={() => logout()}>CHANGE COMPANY DETAILS</button>
+</div>
+
 
 </NavBar>
 </div>

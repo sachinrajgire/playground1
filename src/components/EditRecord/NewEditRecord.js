@@ -7,7 +7,10 @@ import NavBar from '../../components/NavBar/NavBar';
 import BigHeader from '../ReusableUI/BigHeader';
 import { Button,Input, FormGroup,Label,Col} from 'reactstrap';
 import axios from '../../Axios';
-import moment from 'moment'
+import moment from 'moment';
+import SearchCompanyLauncher from '../EditCompany/SearchCompanyLauncher'
+import { NULL } from 'node-sass';
+import { SignalCellularNull } from '@material-ui/icons';
 
 
 
@@ -24,7 +27,6 @@ let initialState={
   universityName:"",
   jobTitle:"",
   companyName:"",
-  careerUrl:"",
 
 }
 
@@ -59,6 +61,10 @@ const [graduationDate,setGraduationDate]=useState(getInitialValues().graduationD
 const [companyName,setCompanyName]=useState(getInitialValues().companyName)
 const [careerUrl,setCareerUrl]=useState(getInitialValues().careerUrl)
 const [submitted,setSubmitted] =useState(false)
+const [companySearchText,setCompanySearchText] =useState("")
+const [enableCompanySearch,setEnableCompanySearch] =useState(false)
+const [fireCompanySearch,setFireCompanySearch] =useState(false)
+const [selectedRow,setSelectedRow] =useState(null)
 
 console.log(graduationDate,'graduation Date')
 console.log(typeof(graduationDate),'graduation Date')
@@ -76,6 +82,29 @@ let commonFields ={
   
 }
 
+// function handleUpdateSubmit (e) {
+//   e.stopPropagation()
+//   e.preventDefault()
+//   setSubmitted(true)
+  
+//   if(editMode) {
+  
+//   axios.put('v1/record/editrecord',{company:selectedRow,_id:gotData._id})
+//           .then(res=>{
+//               console.log(res)
+//               setSubmitted(false)
+//               history.push('/app')
+//               // setData(res.data)
+//               // setIsLoading(false)
+//           })
+//           .catch(e=>{
+//               // setIsLoading(false)
+//               console.log(e)
+//               setSubmitted(false)
+//               alert(`Error Updating Record`)
+//           })
+//    }
+// }  
 
 function handleUpdateSubmit (e) {
 e.stopPropagation()
@@ -134,20 +163,20 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
        <div className='field-container' >
         <span className='edit-label'><label>University Name</label></span>
          <input type='text' size='60' onChange={(e)=>setUniversityName(e.target.value)} value={universityName}  
-         placeholder='Please start with http'></input>
+         placeholder=''></input>
          </div>
 
        <div className='field-container' >
         <span className='edit-label'><label>Specialization</label></span>
          <input type='text' size='60' onChange={(e)=>setSpecialization(e.target.value)} value={specialization}  
-         placeholder='Please start with http'></input>
+         placeholder=''></input>
          </div>
 
       
        <div className='field-container' >
         <span className='edit-label'><label>Graduation Date</label></span>
          <input type='date' size='60' onChange={(e)=>setGraduationDate(e.target.value)} value={graduationDate}
-         placeholder='Please start with http'></input>
+         placeholder=''></input>
          </div>
 
 
@@ -169,18 +198,52 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
          <div className='field-container' >
         <span className='edit-label'><label>Job Title</label></span>
          <input type='text' size='60' onChange={(e)=>setJobTitle(e.target.value)} value={jobTitle }  
-         placeholder='Please start with http'></input>
+         placeholder=''></input>
          </div>
 
          <div className='field-container' >
         <span className='edit-label'><label>Job Start Date</label></span>
          <input type='date' size='60' onChange={(e)=>setjobStartDate(e.target.value)} value={jobStartDate}
-         placeholder='Please start with http'></input>
+         placeholder=''></input>
          </div>
 
        <div className='field-container' >
          <Button disabled={submitted} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">{editMode ? `Update` : `Submit`} </Button>
          </div>
+
+
+       <div className='field-container' >
+         {    `Current Company : ${gotData.company.companyName}`}
+         </div>
+
+    <div className='field-container' >
+         <Button onClick={(e)=>history.push(`/editcompany/${gotData.company._id}`)} color="secondary">Change Company Details </Button>
+         <Button onClick={()=>setEnableCompanySearch(true)} color="secondary">Change Associated Company</Button>
+         </div>
+  
+         {enableCompanySearch && <div>
+         <div className='field-container' >
+        <span className='edit-label'><label>Company Search </label></span>
+         <input type='text' size='60' onChange={(e)=>setCompanySearchText(e.target.value)} value={companySearchText}  
+         placeholder=''></input>
+         <Button disabled={fireCompanySearch} onClick={()=>setFireCompanySearch(true)} color="secondary">Search Companies</Button>
+         <Button disabled={!fireCompanySearch} onClick={()=>setFireCompanySearch(false)} color="secondary">Clear Search</Button>
+
+         </div> 
+    {fireCompanySearch && <div> 
+      <Button disabled={!selectedRow} onClick={()=>setFireCompanySearch(true)} color="secondary">SAVE</Button>
+      <Button disabled={!selectedRow} onClick={()=>setSelectedRow(null)} color="secondary">CLEAR</Button>
+
+
+     <SearchCompanyLauncher 
+     keyword={companySearchText}
+     selectedRow={selectedRow}
+     setSelectedRow={setSelectedRow}
+     />
+     </div>
+} 
+     </div>
+}
 
        </NavBar>
     </div>)
