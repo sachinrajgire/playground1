@@ -1,16 +1,16 @@
 import useCallApi from '../CustomHooks/useCallApi'
 import Spinner from '@material-ui/core/LinearProgress';
 import React from 'react';
-import NewEditCompany from './NewEditCompany'
+import EditRecord from './EditRecord'
 import {  useParams } from "react-router-dom";
 
 
 
-function NewEditCompanyLauncher () {
+function EditRecordLauncher () {
 
     const params= useParams()
     console.log(params,'params');
-    const [isLoading, data] = useCallApi(`/v1/company/getCompanyById?Id=${params.Id}`)
+    const [isLoading, data] = useCallApi(`/v1/record/getRecordById?Id=${params.Id}`)
    console.log(data,'data')
     if(isLoading || !data ) {
         return <Spinner />
@@ -19,7 +19,7 @@ function NewEditCompanyLauncher () {
 
    return (
        <React.Fragment>
-           <NewEditCompany 
+           <EditRecord 
            editingMode='edit'
            gotData={data}
            />
@@ -27,4 +27,4 @@ function NewEditCompanyLauncher () {
    )
 }
 
-export default NewEditCompanyLauncher
+export default EditRecordLauncher

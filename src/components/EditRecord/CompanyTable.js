@@ -8,6 +8,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Url from '../Url/Url';
+import {formattedDate} from '../../helpers/timeanddateHelpers';
+import moment from 'moment';
+import Checkbox from '@material-ui/core/Checkbox';
+
+
+
+
 import { Badge } from 'reactstrap';
 import {
   Switch,
@@ -54,9 +61,8 @@ export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            {/* <StyledTableCell align="right">Select</StyledTableCell> */}
+            <StyledTableCell align="right">Select</StyledTableCell>
             <StyledTableCell>Company name</StyledTableCell>
-            <StyledTableCell>Edit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -66,18 +72,15 @@ export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
             >
                                    
 
-                {/* <TableCell padding="checkbox">
+                <TableCell padding="checkbox">
                         <Checkbox
                           checked={row._id === selectedRow}
                           // inputProps={{ 'aria-labelledby': labelId }}
                         />
-                      </TableCell> */}
+                      </TableCell>
               <StyledTableCell component="th" scope="row">
                 {row.companyName}
               </StyledTableCell>
-              <StyledTableCell align="right" onClick={()=>history.push(`/editcompany/${row._id}`)} >
-                 <Url>Edit</Url>
-                  </StyledTableCell>
              
             </StyledTableRow>
           ))}

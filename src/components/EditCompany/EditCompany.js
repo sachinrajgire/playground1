@@ -10,18 +10,12 @@ import moment from 'moment'
 
 
 
-function NewEditCompany({gotData, editingMode='new'}) {
-
+function EditCompany({gotData}) {
 
 function getInitialValues () {
 let initialState={
   careerUrl:"",
   companyName:"",
-
-}
-
-if(editingMode === 'new'){
-return initialState
 }
 
 initialState.careerUrl= gotData.careerUrl
@@ -43,8 +37,26 @@ const [companyName,setCompanyName]=useState(getInitialValues().companyName)
 const [careerUrl,setCareerUrl]=useState(getInitialValues().careerUrl)
 const [submitted,setSubmitted] =useState(false)
 
-
-const editMode = editingMode === 'edit'
+function handleDelete (e) {
+  e.stopPropagation()
+  e.preventDefault()
+  setSubmitted(true)
+  axios.delete(`v1/company/deletecompany?_id=${gotData._id}`)
+          .then(res=>{
+              console.log(res)
+              setSubmitted(false)
+              history.push('/app')
+              // setData(res.data)
+              // setIsLoading(false)
+          })
+          .catch(e=>{
+              // setIsLoading(false)
+              console.log(e)
+              setSubmitted(false)
+              alert(`Error Updating Record`)
+          })
+  
+}
 
 let commonFields ={
   careerUrl,
@@ -53,12 +65,11 @@ let commonFields ={
 }
 
 
-function handleUpdateSubmit (e) {
+function handleUpdate (e) {
 e.stopPropagation()
 e.preventDefault()
 setSubmitted(true)
 
-if(editMode) {
 
 axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
         .then(res=>{
@@ -74,29 +85,7 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
             setSubmitted(false)
             alert(`Error Updating Company`)
         })
- }
- else {
-  axios.post('v1/company/createnewcompany',
-  {...commonFields,
-  companyName,
-  careerUrl
-
-  })
-  .then(res=>{
-      console.log(res)
-      setSubmitted(false)
-      history.push('/administration')
-      // setData(res.data)
-      // setIsLoading(false)
-  })
-  .catch(e=>{
-      // setIsLoading(false)
-      console.log(e)
-      setSubmitted(false)
-      alert(`Error Creating New Company`)
-  })
-  
- }
+ 
 
 }
 
@@ -105,7 +94,7 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
     <div className='new-edit-container'>
       <NavBar>
        <BigHeader 
-       banner={editMode ? `Edit Company` : `New Company`} 
+       banner={`Now Editing ${companyName}`} 
        />
     
           <div className='field-container' >
@@ -122,13 +111,16 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
          
 
        <div className='field-container' >
-         <Button disabled={submitted} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">{editMode ? `Update` : `Submit`} </Button>
+         <Button disabled={submitted} onClick={(e)=>handleUpdate(e)} color="secondary">Update </Button>
          </div>
-
+         <div className="dangerzone">
+        DANGER ZONE -- BE CAREFUL 
+         <Button  onClick={(e)=>handleDelete(e)} color="secondary">DELETE </Button>
+         </div>
        </NavBar>
     </div>)
 
 }
 
 
-export default NewEditCompany
+export default EditCompany
