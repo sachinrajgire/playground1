@@ -1,12 +1,12 @@
 import useCallApi from '../CustomHooks/useCallApi'
 import Spinner from '@material-ui/core/LinearProgress';
 import React from 'react';
-import NewEditRecord from './NewEditRecord'
+import EditRecord from './EditRecord'
 import {  useParams } from "react-router-dom";
 
 
 
-function NewEditLauncher () {
+function EditRecordLauncher () {
 
     const params= useParams()
     console.log(params,'params');
@@ -19,7 +19,7 @@ function NewEditLauncher () {
 
    return (
        <React.Fragment>
-           <NewEditRecord 
+           <EditRecord 
            editingMode='edit'
            gotData={data}
            />
@@ -27,4 +27,4 @@ function NewEditLauncher () {
    )
 }
 
-export default NewEditLauncher
+export default EditRecordLauncher

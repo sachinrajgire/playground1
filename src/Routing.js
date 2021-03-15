@@ -8,7 +8,10 @@ import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
 import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
-import NewEditLauncher from './components/EditRecord/NewEditLauncher';
+import EditRecordLauncher from './components/EditRecord/EditRecordLauncher';
+import NewRecord from './components/EditRecord/NewRecord';
+import NewCompany from './components/EditCompany/NewCompany';
+import EditCompanyLauncher from './components/EditCompany/EditCompanyLauncher';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from '@material-ui/core/LinearProgress';
@@ -18,7 +21,7 @@ import {
     Redirect,
     useHistory
   } from "react-router-dom";
-import NewEditRecord from './components/EditRecord/NewEditRecord';
+import EditRecord from './components/EditRecord/EditRecord';
 
 
 function Routing() {
@@ -53,8 +56,11 @@ function Routing() {
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
             <Route path="/visualizations" component={Visualizations} />                   
-            <Route path="/editrecord/:Id" component={NewEditLauncher} />                   
-            <Route path="/createnewrecord" component={NewEditRecord} />                   
+            <Route path="/editrecord/:Id" component={EditRecordLauncher} />                   
+            <Route path="/createnewrecord" component={NewRecord} />                   
+            <Route path="/editcompany/:Id" component={EditCompanyLauncher} />                  
+            <Route path="/createnewcompany" component={NewCompany} />                  
+            <Route path="/createnewrecord" component={EditRecord} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
             <Route path="/" component={Rooter} />   

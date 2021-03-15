@@ -19,11 +19,19 @@ const Administration = () => {
        />
 <div style={{margin:'50px'}}>
 <button onClick={() => history.push(`/createnewrecord`)}>CREATE NEW RECORD</button>
+<button onClick={() => history.push(`/app`)}>EDIT / DELETE RECORD</button>
+</div>
+
+<div style={{margin:'50px'}}>
+<button onClick={() => history.push(`/createnewcompany`)}>CREATE NEW COMPANY</button>{` `}
+<button onClick={() => history.push(`/createnewcompany`)}>CHANGE DETAILS OF EXISTING COMPANY</button>
 </div>
 
 <div style={{margin:'50px'}}>
 <button onClick={() => logout()}>LOG OUT </button>
 </div>
+
+
 
 
 </NavBar>
