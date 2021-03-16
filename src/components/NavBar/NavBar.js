@@ -12,6 +12,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home'
+import EqualizerIcon from '@material-ui/icons/Equalizer'
+import AdminIcon from '@material-ui/icons/AccountBalance'
 import {  useHistory } from "react-router-dom";
 
 
@@ -73,12 +76,34 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {menu.map((item, index) => (
+            <ListItem button key={menu[0].label}>
+              <ListItemIcon>{<HomeIcon />}</ListItemIcon>
+              <ListItemText primary={menu[0].label} onClick={()=>history.push(menu[0].url)}/>
+            </ListItem>
+            <ListItem button key={menu[1].label}>
+              <ListItemIcon>{<EqualizerIcon />}</ListItemIcon>
+              <ListItemText primary={menu[1].label} onClick={()=>history.push(menu[1].url)}/>
+            </ListItem>
+            <ListItem button key={menu[2].label}>
+              <ListItemIcon>{<AdminIcon />}</ListItemIcon>
+              <ListItemText primary={menu[2].label} onClick={()=>history.push(menu[2].url)}/>
+            </ListItem>
+
+
+          
+          {/* {menu.map((item, index) => (
             <ListItem button key={item.label}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={item.label} onClick={()=>history.push(item.url)}/>
             </ListItem>
-          ))}
+          ))} */}
+
+          {/* {menu.map((item, index) => (
+            <ListItem button key={menu[index].label}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={menu[index].label} onClick={()=>history.push(menu[index].url)}/>
+            </ListItem>
+          ))} */}
         </List>
         <Divider />
         {/* <List>
