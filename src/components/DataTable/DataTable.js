@@ -29,6 +29,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    width: '10%'
   },
 }))(TableCell);
 
@@ -55,7 +56,7 @@ export default function CustomizedTables({data}) {
   return (
     <TableContainer component={Paper} >
     <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
-      <Table className={classes.table} aria-label="customized table">
+      <Table className={classes.table} aria-label="customized table" style={{ width:'1000px'}}>
         <TableHead>
           <TableRow>
             <StyledTableCell>Employer</StyledTableCell>
