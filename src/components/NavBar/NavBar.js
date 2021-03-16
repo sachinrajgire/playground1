@@ -71,6 +71,7 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         anchor="left"
       >
         <div className={classes.toolbar} />
+        <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png"></img>
         <Divider />
         <List>
           {menu.map((item, index) => (
