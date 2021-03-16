@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Url from '../Url/Url';
 import {formattedDate} from '../../helpers/timeanddateHelpers';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import moment from 'moment'
 
 import { Badge } from 'reactstrap';
@@ -52,8 +53,12 @@ export default function CustomizedTables({data}) {
   const history= useHistory()
 
   return (
+    <>
+    <div style={{height:"40px",marginLeft:"5px",display:"flex",alignItems:"center"}}>
+        <InsertDriveFileIcon /><span style={{margin:'5px',fontWeight:"600"}}> {`Found ${data.length} records`}</span>
+      </div>
     <TableContainer component={Paper}>
-    <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
+      
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -88,8 +93,11 @@ export default function CustomizedTables({data}) {
           ))}
         </TableBody>
       </Table>
-      <Badge color="success"> {`Found ${data.length} records`}</Badge>
-
+      
     </TableContainer>
+    <div style={{height:"40px",marginLeft:"5px",display:"flex",alignItems:"center"}}>
+        <InsertDriveFileIcon /><span style={{margin:'5px',fontWeight:"600"}}> {`Found ${data.length} records`}</span>
+      </div>
+    </>
   );
 }
