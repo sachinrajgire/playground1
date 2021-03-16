@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Url from '../Url/Url';
 import {formattedDate} from '../../helpers/timeanddateHelpers';
 import moment from 'moment'
-import './dataTable.scss'
 
 import { Badge } from 'reactstrap';
 import {
@@ -72,7 +71,7 @@ export default function CustomizedTables({data}) {
         </TableHead>
         <TableBody>
           {data && data.map((row) => (
-            <StyledTableRow key={row._id} className="customHover" hover>
+            <StyledTableRow key={row._id} hover>
               <StyledTableCell component="th" scope="row">
                 {row.company.companyName}
               </StyledTableCell>
