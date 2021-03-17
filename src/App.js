@@ -12,7 +12,8 @@ import Spinner from '@material-ui/core/LinearProgress';
 import axios from './Axios';
 import TopEmployers from './components/Visualizations/TopEmployers/TopEmployers';
 import NavBar from './components/NavBar/NavBar';
-
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 function App() {
 const [data, setData]=useState([])
@@ -21,6 +22,8 @@ const [searchInvoked,setSearchInvoked]=useState(false)
 const [isDataLoading, setIsDataLoading] = useState(false)
 const [nextCursor, setNextCursor] = useState(null)
 console.log(nextCursor,'nextCursor');
+const counter = useSelector(state => console.log(state,'STATE'))
+const dispatch = useDispatch()
 
 const history= useHistory()
 
@@ -87,6 +90,12 @@ if(data && data.length) {
 }
 
 },[data])
+
+useEffect(()=>{
+    dispatch({type: 'counterplus'})
+
+}
+,[])
 
    
 function handleClear(){

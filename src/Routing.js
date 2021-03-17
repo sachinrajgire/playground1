@@ -11,6 +11,7 @@ import Visualizations from './components/Visualizations';
 import EditRecordLauncher from './components/EditRecord/EditRecordLauncher';
 import NewRecord from './components/EditRecord/NewRecord';
 import NewCompany from './components/EditCompany/NewCompany';
+import LeaderBoard from './components/Leaderboard';
 import EditCompanyLauncher from './components/EditCompany/EditCompanyLauncher';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -60,7 +61,8 @@ function Routing() {
             <Route path="/createnewrecord" component={NewRecord} />                   
             <Route path="/editcompany/:Id" component={EditCompanyLauncher} />                  
             <Route path="/createnewcompany" component={NewCompany} />                  
-            <Route path="/createnewrecord" component={EditRecord} />                   
+            <Route path="/createnewrecord" component={EditRecord} />                  
+            <Route path="/leaderboard" component={LeaderBoard} />                  
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
             <Route path="/" component={Rooter} />   

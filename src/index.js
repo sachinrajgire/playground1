@@ -11,6 +11,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Provider } from 'react-redux'
+import store from './Redux/store'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,10 +21,13 @@ ReactDOM.render(
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
     redirectUri={window.location.origin}
   >
+    <Provider store={store}>
     <Router>
        <Routing />
     </Router>
+    </Provider>
     </Auth0Provider>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -31,28 +36,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-// let str=`I can code all Night long`
-// let regex=/\s[a-z]+/gm
-
-// let ret= str.replace(regex,(arg)=>{
-
-//   console.log(arg,'arg');
-// let play= arg.charAt(1).toUpperCase() + arg.slice(2)
-// console.log(play,'play');
-// return ` ${play}`
-// })
-
-// let str=`Three girls went to forest .Monkey said yee yaaaaaw `
-// let regex=/([a-z])\1+/gmi
-
-// let ret = str.match(regex)
-// console.log(ret,'ret');
-// return ret.join("")
-
-// let str=`When boy went to boarding school, he was fine`
-// let regex=/\sb[a-z]+/gmi
-
-// let ret = str.match(regex)
-// console.log(ret,'ret');
-// return ret[0].trim().length  
