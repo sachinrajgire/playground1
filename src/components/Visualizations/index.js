@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import TopEmployers from './TopEmployers/TopEmployers';
 import NavBar from '../NavBar/NavBar';
-
+import JobTitle from './JobTitle/JobTitle'
 
 
   function Visualizations(){
@@ -9,6 +9,7 @@ import NavBar from '../NavBar/NavBar';
     return <div>
     <NavBar>
     <TopEmployers />
+    <JobTitle />
     </NavBar>    
 </div>
   }
