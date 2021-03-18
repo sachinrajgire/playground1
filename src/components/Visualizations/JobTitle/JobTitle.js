@@ -6,14 +6,24 @@ import DisplayJobT from './DisplayJobT'
 function JobTitle(){
     const [data, setData]=useState([])
     const [isDataLoading, setIsDataLoading] = useState(false)
-    const [nextCursor, setNextCursor] = useState(null)
+
 
     useEffect(()=>{
         setIsDataLoading(true)
-        axios.get('http://localhost:4001/v1/record/allrecords')
+        axios.get('http://localhost:4000/v1/record/allrecords')
         .then(res=>{
-            // console.log(res.data)
-            setData(res.data)
+         let data1=res.data
+         let obj = {}
+            for(let i = 0 ; i<data1.length;i++){
+                let k = data1[i].jobTitle;
+                    if(!obj[k]){
+                        obj[k] = 1
+                    }else{
+                        obj[k]++
+                    }
+            }
+       
+            setData(obj)
             setIsDataLoading(false)
         })
         .catch(e=>{
@@ -22,29 +32,6 @@ function JobTitle(){
         })
         },[])
 
-        let  myMap = new Map()
-        for(let i = 0 ; i<data.length;i++){
-            let k = data[i].jobTitle;
-        //   console.log(k)
-          if(myMap.has(k)){
-              let value = myMap.get(k)
-              myMap.set(k, value++)
-          }else{
-              myMap.set(k,1)
-          }
-        }
-
-             console.log("MAP SIZE")
-             console.log(myMap.size);
-             console.log("DATA SIZE")
-             console.log(data.length)
-
-            //  for(let i of myMap)
-            // {
-            //     console.log(i[0]+" "+i[1])
-            // }
-
-
         if(isDataLoading){
             return <Spinner />
          }
@@ -52,7 +39,9 @@ function JobTitle(){
 
  return(
      <div>
-       <DisplayJobT myMap/>
+       <DisplayJobT 
+      data={data}
+       />
      </div>
  )
 }
