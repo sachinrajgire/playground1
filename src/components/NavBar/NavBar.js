@@ -88,11 +88,20 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
               <ListItemIcon>{<AdminIcon />}</ListItemIcon>
               <ListItemText primary={menu[2].label} onClick={()=>history.push(menu[2].url)}/>
             </ListItem>
-            
+
+
+          
           {/* {menu.map((item, index) => (
             <ListItem button key={item.label}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={item.label} onClick={()=>history.push(item.url)}/>
+            </ListItem>
+          ))} */}
+
+          {/* {menu.map((item, index) => (
+            <ListItem button key={menu[index].label}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={menu[index].label} onClick={()=>history.push(menu[index].url)}/>
             </ListItem>
           ))} */}
         </List>
