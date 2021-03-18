@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const defaultMenu = [
-    {label:'Home',url:'/app'},
-    {label:'Visualizations',url:'/visualizations'},
-    {label:'Administration',url:'/administration'},
+    {label:'Home',url:'/app', icon: <HomeIcon/>},
+    {label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
+    {label:'Administration',url:'/administration', icon: <AdminIcon/>},
 ]
 
 
@@ -75,35 +75,14 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List>
-            <ListItem button key={menu[0].label}>
-              <ListItemIcon>{<HomeIcon />}</ListItemIcon>
-              <ListItemText primary={menu[0].label} onClick={()=>history.push(menu[0].url)}/>
-            </ListItem>
-            <ListItem button key={menu[1].label}>
-              <ListItemIcon>{<EqualizerIcon />}</ListItemIcon>
-              <ListItemText primary={menu[1].label} onClick={()=>history.push(menu[1].url)}/>
-            </ListItem>
-            <ListItem button key={menu[2].label}>
-              <ListItemIcon>{<AdminIcon />}</ListItemIcon>
-              <ListItemText primary={menu[2].label} onClick={()=>history.push(menu[2].url)}/>
-            </ListItem>
-
-
-          
-          {/* {menu.map((item, index) => (
+        <List>       
+          {menu.map((item, index) => (
             <ListItem button key={item.label}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} onClick={()=>history.push(item.url)}/>
             </ListItem>
-          ))} */}
+          ))}
 
-          {/* {menu.map((item, index) => (
-            <ListItem button key={menu[index].label}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={menu[index].label} onClick={()=>history.push(menu[index].url)}/>
-            </ListItem>
-          ))} */}
         </List>
         <Divider />
         {/* <List>
