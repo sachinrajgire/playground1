@@ -22,6 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    width: '10%'
   },
 }))(TableCell);
 
@@ -36,6 +37,7 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 900,
+    width: 1000
   },
 });
 
@@ -44,43 +46,39 @@ export default function CustomizedTables({ data }) {
   const classes = useStyles();
   const history = useHistory();
 
-  return (
-    <>
-      <div
-        style={{
-          height: "40px",
-          marginTop: "10px",
-          marginLeft: "5px",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <InsertDriveFileIcon />
-        <span style={{ margin: "5px", fontWeight: "600" }}>
-          {" "}
-          {`Found ${data.length} records`}
-        </span>
-      </div>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Employer</StyledTableCell>
-              <StyledTableCell align="right">Job Title</StyledTableCell>
-              <StyledTableCell align="right">Job Start Date</StyledTableCell>
-              <StyledTableCell align="right">University Name</StyledTableCell>
-              <StyledTableCell align="right">Graduation Date</StyledTableCell>
-              <StyledTableCell align="right">Specialization</StyledTableCell>
-              <StyledTableCell align="right">Career Link</StyledTableCell>
-              <StyledTableCell align="right">Edit</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data &&
-              data.map((row) => (
-                <StyledTableRow key={row._id}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.company.companyName}
+
+    <TableContainer component={Paper} >
+    <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
+      <Table className={classes.table}   aria-label="customized table" >
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Employer</StyledTableCell>
+            <StyledTableCell align="left">Job Title</StyledTableCell>
+            <StyledTableCell align="left">Job Start Date</StyledTableCell>
+            <StyledTableCell align="left">University Name</StyledTableCell>
+            <StyledTableCell align="left">Graduation Date</StyledTableCell>
+            <StyledTableCell align="left">Specialization</StyledTableCell>
+            <StyledTableCell align="left">Career Link</StyledTableCell>
+            <StyledTableCell align="left">Edit</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data && data.map((row) => (
+            <StyledTableRow key={row._id} hover>
+              <StyledTableCell component="th" scope="row">
+                {row.company.companyName}
+              </StyledTableCell>
+              <StyledTableCell align="left">{row.jobTitle}</StyledTableCell>
+              <StyledTableCell align="left">{formattedDate(row.jobStartDate).format1}</StyledTableCell>
+              <StyledTableCell align="left">{row.universityName}</StyledTableCell>
+              <StyledTableCell align="left">{formattedDate(row.graduationDate).format1}</StyledTableCell>
+              <StyledTableCell align="left">{row.specialization}</StyledTableCell>
+              <StyledTableCell align="left" >
+                  <a href={`${row.company.careerUrl}`} target="_blank">Apply</a>
+                </StyledTableCell>
+              <StyledTableCell align="right" onClick={()=>history.push(`/editrecord/${row._id}`)} >
+                 <Url>Edit</Url>
+
                   </StyledTableCell>
                   <StyledTableCell align="right">
                     {row.jobTitle}
