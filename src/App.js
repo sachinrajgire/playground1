@@ -117,13 +117,13 @@ return (
 
 <div>
   
-<div className= "inline">
+<div className= "search-group">
 <Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
 onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inline" placeholder="Search..." />
 <div style={{margin:'20px'}}>
 </div>
 
-<div className ="inline">
+<div className ="search-group">
 <Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary" id="inline">Search</Button>
 </div>
 
