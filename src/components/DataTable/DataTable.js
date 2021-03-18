@@ -22,6 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    width: '10%'
   },
 }))(TableCell);
 
@@ -35,7 +36,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 900,
+    minWidth: 1000,
   },
 });
 
