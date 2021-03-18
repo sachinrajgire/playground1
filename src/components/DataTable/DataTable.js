@@ -57,11 +57,7 @@ export default function CustomizedTables({data}) {
   return (
     <TableContainer component={Paper} >
     <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
-<<<<<<< HEAD
       <Table className={classes.table}   aria-label="customized table" >
-=======
-      <Table className={classes.table} aria-label="customized table" style={{ width:'1000px'}}>
->>>>>>> 4802116243a09a40c7a42a5f5baf4aeac3bb8cf8
         <TableHead>
           <TableRow>
             <StyledTableCell>Employer</StyledTableCell>
