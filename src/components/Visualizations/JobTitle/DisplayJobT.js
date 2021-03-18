@@ -16,7 +16,7 @@ function DisplayJobT(data) {
 
   Object.entries(data.data).forEach(([key, value]) => 
   
-   w.unshift( { 
+   w.push( { 
         text: `${key}` , 
         value: value
       }
