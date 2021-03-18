@@ -49,11 +49,6 @@ const useStyles = makeStyles({
   },
 });
 
-// const tableStyle = withStyles((theme) =>({
-//  width: 1000
-
-// }))
-
 export default function CustomizedTables({data}) {
     console.log(data,'data')
   const classes = useStyles();
