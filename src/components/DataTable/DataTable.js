@@ -45,8 +45,14 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 900,
+    width: 1000
   },
 });
+
+// const tableStyle = withStyles((theme) =>({
+//  width: 1000
+
+// }))
 
 export default function CustomizedTables({data}) {
     console.log(data,'data')
@@ -56,7 +62,7 @@ export default function CustomizedTables({data}) {
   return (
     <TableContainer component={Paper} >
     <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
-      <Table className={classes.table} aria-label="customized table" style={{ width:'1000px'}}>
+      <Table className={classes.table}   aria-label="customized table" >
         <TableHead>
           <TableRow>
             <StyledTableCell>Employer</StyledTableCell>
