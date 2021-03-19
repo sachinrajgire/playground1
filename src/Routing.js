@@ -8,6 +8,7 @@ import Carousel from './components/Carousel/Carousel';
 import Dashboard from './components/Dashboard/Dashboard';
 import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
+import Ranking from './components/Ranking/Ranking';
 import EditRecordLauncher from './components/EditRecord/EditRecordLauncher';
 import NewRecord from './components/EditRecord/NewRecord';
 import NewCompany from './components/EditCompany/NewCompany';
@@ -56,6 +57,7 @@ function Routing() {
             <Route path="/lottery" component={Lottery} />                   
             <Route path="/carousal" component={Carousel} />                   
             <Route path="/visualizations" component={Visualizations} />                   
+            <Route path="/ranking" component={Ranking} />                   
             <Route path="/editrecord/:Id" component={EditRecordLauncher} />                   
             <Route path="/createnewrecord" component={NewRecord} />                   
             <Route path="/editcompany/:Id" component={EditCompanyLauncher} />                  

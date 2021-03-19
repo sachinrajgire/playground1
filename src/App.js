@@ -117,17 +117,17 @@ return (
 
 <div>
   
-<div className= "inline">
+{/* <div className= "inline"> */}
 <Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
 onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inline" placeholder="Search..." />
-<div style={{margin:'20px'}}>
-</div>
+{/* <div style={{margin:'20px'}}> */}
+{/* </div> */}
 
-<div className ="inline">
+{/* <div className ="inline"> */}
 <Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary" id="inline">Search</Button>
-</div>
+{/* </div> */}
 
-</div>
+{/* </div> */}
 
 
 {searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>

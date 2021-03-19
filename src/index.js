@@ -5,15 +5,20 @@ import './index.css';
 import Routing from './Routing';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+// import { Provider } from 'react-redux'
+// import store from './store'
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <Auth0Provider
     domain={process.env.REACT_APP_AUTH0_DOMAIN}
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
@@ -23,6 +28,7 @@ ReactDOM.render(
        <Routing />
     </Router>
     </Auth0Provider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
