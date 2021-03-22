@@ -70,8 +70,8 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         }}
         anchor="left"
       >
+        <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"250px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
         <div className={classes.toolbar} />
-        <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png"></img>
         <Divider />
         <List>
           {menu.map((item, index) => (
