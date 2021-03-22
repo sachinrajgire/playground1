@@ -12,6 +12,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home'
+import EqualizerIcon from '@material-ui/icons/Equalizer'
+import AdminIcon from '@material-ui/icons/AccountBalance'
 import {  useHistory } from "react-router-dom";
 
 
@@ -42,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const defaultMenu = [
-    {label:'Home',url:'/app'},
-    {label:'Visualizations',url:'/visualizations'},
-    {label:'Administration',url:'/administration'},
+    {label:'Home',url:'/app', icon: <HomeIcon/>},
+    {label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
+    {label:'Administration',url:'/administration', icon: <AdminIcon/>},
 ]
 
 
@@ -73,13 +76,14 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"250px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
         <div className={classes.toolbar} />
         <Divider />
-        <List>
+        <List>       
           {menu.map((item, index) => (
             <ListItem button key={item.label}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} onClick={()=>history.push(item.url)}/>
             </ListItem>
           ))}
+
         </List>
         <Divider />
         {/* <List>
