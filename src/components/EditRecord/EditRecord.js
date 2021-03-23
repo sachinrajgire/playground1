@@ -22,8 +22,8 @@ function EditRecord({gotData}) {
 function getInitialValues () {
 let initialState={
   careerUrl:"",
-  graduationDate:null,
-  jobStartDate:null,
+  graduationDate:"",
+  jobStartDate:"",
   specialization:"",
   universityName:"",
   jobTitle:"",
@@ -31,8 +31,8 @@ let initialState={
 
 }
 
-initialState.graduationDate= gotData.graduationDate
-initialState.jobStartDate= gotData.jobStartDate
+initialState.graduationDate= moment(gotData.graduationDate).format('YYYY-MM-DD')
+initialState.jobStartDate= moment(gotData.jobStartDate).format('YYYY-MM-DD')
 initialState.specialization= gotData.specialization
 initialState.universityName= gotData.universityName
 initialState.jobTitle= gotData.jobTitle
@@ -65,15 +65,15 @@ const [selectedRow,setSelectedRow] =useState(null)
 
 console.log(graduationDate,'graduation Date')
 console.log(typeof(graduationDate),'graduation Date')
-console.log(moment(graduationDate).format(),'MOMEMT')
+console.log(moment(graduationDate).format('YYYY-MM-DD'),'MOMEMT')
 
 
 let commonFields ={
   universityName,
   specialization,
-  jobStartDate:moment(jobStartDate).format(),
+  jobStartDate:moment(jobStartDate).format('YYYY-MM-DD'),
   jobTitle,
-  graduationDate:moment(graduationDate).format()
+  graduationDate:moment(graduationDate).format('YYYY-MM-DD')
 }
 
 function handleDelete (e) {
@@ -165,7 +165,7 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
       
        <div className='field-container' >
         <span className='edit-label'><label>Graduation Date</label></span>
-         <input type='date' size='60' onChange={(e)=>setGraduationDate(e.target.value)} value={graduationDate}
+         <input type='date' size='60' onChange={(e)=>setGraduationDate(moment(e.target.value).format('YYYY-MM-DD'))} value={graduationDate}
          placeholder=''></input>
          </div>
 
@@ -177,7 +177,7 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
 
          <div className='field-container' >
         <span className='edit-label'><label>Job Start Date</label></span>
-         <input type='date' size='60' onChange={(e)=>setjobStartDate(e.target.value)} value={jobStartDate}
+         <input type='date' size='60' onChange={(e)=>setjobStartDate(moment(e.target.value).format('YYYY-MM-DD'))} value={jobStartDate}
          placeholder=''></input>
          </div>
 

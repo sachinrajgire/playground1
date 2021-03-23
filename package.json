@@ -27,15 +27,20 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+
+    "start": "set PORT=3001&& react-scripts start",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
+    ]
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   },
   "browserslist": {
@@ -51,6 +56,11 @@
     ]
   },
   "devDependencies": {
+
     "cross-env": "^7.0.3"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.1"
+
   }
 }

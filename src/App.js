@@ -111,15 +111,27 @@ return (
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>
-<Col sm={4} >
+
+
+<div>
+  
+<div className= "search-group">
 <Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
-onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="exampleEmail" placeholder="Search..." />
+onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inline" placeholder="Search..." />
 <div style={{margin:'20px'}}>
-<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary">Search</Button>
+</div>
+
+<div className ="search-group">
+<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary" id="inline">Search</Button>
+</div>
+
+</div>
+
+
 {searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
 }
 </div>
-</Col>
+
 <DataTable 
 data={data}
 />
