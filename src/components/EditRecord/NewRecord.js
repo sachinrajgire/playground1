@@ -65,10 +65,7 @@ axios.post('v1/record/createnewrecord',obj)
       alert(`Error Creating New Record`)
   })
 }
-function handleSubmitDisable () {
 
-return false 
-}
 
 // console.log(children,'children');
  return (
@@ -134,7 +131,7 @@ return false
          </div>
 
        <div className='field-container bmxl bpxl' >
-         <Button disabled={handleSubmitDisable()} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
+         <Button disabled={(universityName.length>2 && specialization.length>2 && jobTitle.length>2) ? false: true} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
          </div>
          </div>
 </NavBar>
