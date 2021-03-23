@@ -21,13 +21,14 @@
     "react-scripts": "4.0.2",
     "react-tooltip": "^4.2.14",
     "react-vis": "^1.11.7",
+    "react-wordcloud": "^1.2.7",
     "reactstrap": "^8.9.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

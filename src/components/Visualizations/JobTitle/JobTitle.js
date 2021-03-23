@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Spinner from '@material-ui/core/LinearProgress';
 import axios from '../../../Axios'
 import DisplayJobT from './DisplayJobT'
-
+import CustomApi from '../../CustomHooks/useCallApi'
 function JobTitle(){
     const [data, setData]=useState([])
     const [isDataLoading, setIsDataLoading] = useState(false)

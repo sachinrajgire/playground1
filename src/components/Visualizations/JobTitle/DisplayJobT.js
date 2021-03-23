@@ -1,9 +1,6 @@
-import "d3-transition";
-import { select } from "d3-selection";
 import React,{useEffect,useState} from "react";
-import ReactDOM from "react-dom";
 import ReactWordcloud from "react-wordcloud";
-import { keys } from "@material-ui/core/styles/createBreakpoints";
+
 
 
 function DisplayJobT(data) {
