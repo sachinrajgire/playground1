@@ -30,10 +30,10 @@ const [submitted,setSubmitted] =useState(false)
 const [fireCompanySearch,setFireCompanySearch] =useState(false)
 const [selectedRow,setSelectedRow] =useState(null)
 const [companySearchText,setCompanySearchText] =useState("")
-
+const [isDias, setIsDias] = useState(true);
 console.log(selectedRow,'selectedRow ');
 
-
+let regex = /^http/gmi;
 let commonFields ={
   careerUrl,
   companyName,
@@ -45,6 +45,8 @@ function handleCompanySave (e) {
   setSubmitted(true)
   
 }  
+
+
 
 
 function handleUpdateSubmit (e) {
@@ -105,8 +107,8 @@ setSubmitted(true)
        <span className='edit-label'><label>Enter new company details </label></span>
         <div className='field-container' >
         <span className='edit-label'><label>Company Name</label></span>
-         <input type='text' size='60' onChange={(e)=>setCompanyName(e.target.value)} value={companyName}
-         ></input>
+         <input type='text' size='60' onChange={(e)=>setCompanyName(e.target.value) }  value={companyName}> 
+         </input>
          </div>
 
          <div className='field-container' >
@@ -117,7 +119,7 @@ setSubmitted(true)
          
 
        <div className='field-container' >
-         <Button disabled={submitted} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
+         <Button disabled={(companyName.length>2 && regex.test(careerUrl)) ? false: true} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
          </div>
          </div>
 
