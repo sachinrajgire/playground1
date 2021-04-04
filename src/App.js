@@ -10,6 +10,10 @@ import Spinner from '@material-ui/core/LinearProgress';
 import axios from './Axios';
 import TopEmployers from './components/Visualizations/TopEmployers/TopEmployers';
 import NavBar from './components/NavBar/NavBar';
+import { useSelector, useDispatch } from 'react-redux';
+import {storeRecords} from './redux/actions';
+
+
 
 
 function App() {
@@ -18,19 +22,25 @@ const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
 const [isDataLoading, setIsDataLoading] = useState(false)
 const [nextCursor, setNextCursor] = useState(null)
+const dispatch = useDispatch()
+const reduxRecords = useSelector((state)=>state.records)
+
+console.log(reduxRecords,'reduxRecords')
+
 console.log(nextCursor,'nextCursor');
 
 const history= useHistory()
 
 
 function handleKeyPress (e) {
-if(e.which == 13 || e.keyCode == 13){
+if((e.which == 13 || e.keyCode == 13) && !searchInvoked){
     handleSearch()
 }
 }
 
 // componentDidMount
 useEffect(()=>{
+
 setIsDataLoading(true)
 
 axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
@@ -38,6 +48,7 @@ axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
     console.log(res)
     setData(res.data)
     setIsDataLoading(false)
+    dispatch(storeRecords(res.data))
 })
 .catch(e=>{
     setIsDataLoading(false)
@@ -101,7 +112,6 @@ return (
 <div className='container'>
 
 
-{/* <TopEmployers /> */}
 <NavBar>
 
 <div>
@@ -111,8 +121,11 @@ return (
 
 
 <div>
-  
+<div className='mxl'>
+     You can search by company name, university name, specialization or job title
+     </div>  
 <div className= "search-group">
+ 
 <Input value={searchText} onChange={(e)=>setSearchText(e.target.value)} 
 onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inline" placeholder="Search..." />
 <div style={{margin:'20px'}}>

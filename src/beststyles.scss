@@ -6,6 +6,7 @@ $darktheme-background-color:black;
 $darktheme-color:white;
 $lighttheme-color:black;
 $lighttheme-background-color:yellow;
+$xl:16px;
 
 @mixin darktheme {
 background-color: $darktheme-background-color;
@@ -54,4 +55,8 @@ color:burlywood;
   margin:20px;
   padding:20px;
   text-align: center;
+}
+
+.mxl {
+  margin:$xl;
 }
