@@ -11,9 +11,11 @@ import Url from "../Url/Url";
 import { formattedDate } from "../../helpers/timeanddateHelpers";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import moment from "moment";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { Badge } from "reactstrap";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -44,6 +46,7 @@ export default function CustomizedTables({ data }) {
   console.log(data, "data");
   const classes = useStyles();
   const history = useHistory();
+  const { isAuthenticated } = useAuth0();
 
   return (
     <>
@@ -73,7 +76,6 @@ export default function CustomizedTables({ data }) {
               <StyledTableCell align="right">Graduation Date</StyledTableCell>
               <StyledTableCell align="right">Specialization</StyledTableCell>
               <StyledTableCell align="right">Career Link</StyledTableCell>
-              <StyledTableCell align="right">Edit</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -103,12 +105,13 @@ export default function CustomizedTables({ data }) {
                       Apply
                     </a>
                   </StyledTableCell>
-                  <StyledTableCell
+                  {isAuthenticated &&  <StyledTableCell
                     align="right"
                     onClick={() => history.push(`/editrecord/${row._id}`)}
                   >
                     <Url>Edit</Url>
-                  </StyledTableCell>
+                  </StyledTableCell> }
+                 
                 </StyledTableRow>
               ))}
           </TableBody>
