@@ -2,9 +2,9 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {  useHistory } from "react-router-dom";
 import NavBar from '../../components/NavBar/NavBar';
+import Login from '../../components/Login/Login';
+import Logout from '../../components/Logout/Logout';
 import BigHeader from '../ReusableUI/BigHeader';
-
-
 
 
 const Administration = () => {
@@ -14,6 +14,7 @@ const Administration = () => {
   return (
 <div>
   <NavBar>
+ 
   <BigHeader 
        banner="Administration" 
        />
@@ -28,10 +29,12 @@ const Administration = () => {
 </div>
 
 <div style={{margin:'50px'}}>
-<button onClick={() => logout()}>LOG OUT </button>
+<Login />{` `}
+    <Logout />
 </div>
-
-
+<div>
+    
+</div>
 
 
 </NavBar>

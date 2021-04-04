@@ -45,9 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const defaultMenu = [
-    {label:'Home',url:'/app', icon: <HomeIcon/>},
+    {label:'Home',url:'/', icon: <HomeIcon/>},
     {label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
-    {label:'Administration',url:'/administration', icon: <AdminIcon/>},
 ]
 
 
@@ -73,7 +72,7 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         }}
         anchor="left"
       >
-        <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"250px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
+        <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"175px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
         <div className={classes.toolbar} />
         <Divider />
         <List>       

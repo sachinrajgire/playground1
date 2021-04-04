@@ -103,10 +103,7 @@ return (
 
 {/* <TopEmployers /> */}
 <NavBar>
-<div>
-    <Login />
-    <Logout />
-</div>
+
 <div>
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>

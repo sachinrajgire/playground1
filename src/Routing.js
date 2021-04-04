@@ -63,7 +63,7 @@ function Routing() {
             <Route path="/createnewrecord" component={EditRecord} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
-            <Route path="/" component={Rooter} />   
+            <Route path="/" component={App} />   
 
             {/* {isAuthenticated && user.email==='sachin@wynisco.com'
           ? <Route path="/dashboard" component={Dashboard} />
