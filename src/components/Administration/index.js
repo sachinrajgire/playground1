@@ -30,7 +30,7 @@ const Administration = () => {
 
 <div style={{margin:'50px'}}>
 <Login />{` `}
-    <Logout />
+<Logout />
 </div>
 <div>
     
