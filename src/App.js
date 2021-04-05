@@ -109,9 +109,7 @@ return (
 <NavBar>
 
 <div>
-<div style={{textAlign:'right'}}>
-<Button onClick={()=>getNext()} color="secondary">Next</Button>
-</div>
+
 <Promotion />
 
 <div>
@@ -143,9 +141,11 @@ data={data}
 <div>
 
 </div>
+{data && data.length >=24 &&
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>
+}
 </NavBar>  
 </div>
 
