@@ -17,10 +17,7 @@ const availableCandidates= ["Venkat",
 function Lottery({}) {
 
 const [team,setTeam] =useState([])
-// console.log(team,'team');
-// console.log(team.slice(0,2));
-// console.log(team.slice(2,4));
-// console.log(team.slice(4));
+
 let hist = useHistory()
 
 //passing arguments normally
@@ -29,7 +26,6 @@ function handleLottery(e,companyName1) {
     let count = []
     while(true) {
         let randomNumber = Math.floor(Math.random()*availableCandidates.length)
-        console.log(count.includes(randomNumber),'count.includes(randomNumber)');
             if(!count.includes(randomNumber)){
                 count.push(randomNumber)
             }

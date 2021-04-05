@@ -13,7 +13,6 @@ function useCallApi (url){
         
         axios.get(url)
         .then(res=>{
-            console.log(res)
             setData(res.data)
             setIsLoading(false)
         })

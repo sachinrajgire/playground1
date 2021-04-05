@@ -10,6 +10,7 @@ import Spinner from '@material-ui/core/LinearProgress';
 import axios from './Axios';
 import TopEmployers from './components/Visualizations/TopEmployers/TopEmployers';
 import NavBar from './components/NavBar/NavBar';
+import Promotion from './components/Promotion/Promotion';
 import { useSelector, useDispatch } from 'react-redux';
 import {storeRecords} from './redux/actions';
 
@@ -25,9 +26,6 @@ const [nextCursor, setNextCursor] = useState(null)
 const dispatch = useDispatch()
 const reduxRecords = useSelector((state)=>state.records)
 
-console.log(reduxRecords,'reduxRecords')
-
-console.log(nextCursor,'nextCursor');
 
 const history= useHistory()
 
@@ -45,7 +43,6 @@ setIsDataLoading(true)
 
 axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
 .then(res=>{
-    console.log(res)
     setData(res.data)
     setIsDataLoading(false)
     dispatch(storeRecords(res.data))
@@ -60,7 +57,6 @@ function getNext(){
     setIsDataLoading(true)
     axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
 .then(res=>{
-    console.log(res)
     let copyData=[...data,...res.data]
     setData(copyData)
     setIsDataLoading(false)
@@ -77,7 +73,6 @@ function handleSearch () {
 
     axios.get(`v1/record/search?searchText=${searchText}`)
     .then(res=>{
-        console.log(res)
         setData(res.data)
         setIsDataLoading(false)
 
@@ -97,7 +92,6 @@ if(data && data.length) {
 
 },[data])
 
-   
 function handleClear(){
 setSearchText("")
 setSearchInvoked(false)
@@ -115,10 +109,10 @@ return (
 <NavBar>
 
 <div>
-<div style={{margin:'20px',textAlign:'right'}}>
+<div style={{textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>
-
+<Promotion />
 
 <div>
 <div className='mxl'>

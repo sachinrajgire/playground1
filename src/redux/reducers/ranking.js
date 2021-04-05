@@ -39,7 +39,6 @@ export default function(state = initialState, action) {
       ...state,
       can: newState
     }
-    console.log(newState,'NEWSTATE')
       return copy
     // return state
     }
@@ -58,7 +57,6 @@ export default function(state = initialState, action) {
       ...state,
       can: newState
     }
-    console.log(newState,'NEWSTATE')
       return copy
     }
   

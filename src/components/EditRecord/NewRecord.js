@@ -32,14 +32,12 @@ const [fireCompanySearch,setFireCompanySearch] =useState(false)
 const [companySearchText,setCompanySearchText] =useState("")
 const [noCompanyFound,setNoCompanyFound] =useState(false)
 
-console.log(selectedRow,'selectedRow');
 
 
 function handleUpdateSubmit (e) {
 // e.stopPropagation()
 // e.preventDefault()
 // setSubmitted(true)
-console.log('I am insdie handleupdatesubmit')
 
 let obj=  {
   universityName,
@@ -52,7 +50,6 @@ let obj=  {
 
 axios.post('v1/record/createnewrecord',obj)
   .then(res=>{
-      console.log(res)
       setSubmitted(false)
       history.push('/administration')
       // setData(res.data)
@@ -60,14 +57,12 @@ axios.post('v1/record/createnewrecord',obj)
   })
   .catch(e=>{
       // setIsLoading(false)
-      console.log(e)
       setSubmitted(false) 
       alert(`Error Creating New Record`)
   })
 }
 
 
-// console.log(children,'children');
  return (
     <div className='new-edit-container'>
       <NavBar>

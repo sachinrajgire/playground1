@@ -9,9 +9,7 @@ import {  useParams } from "react-router-dom";
 function EditCompanyLauncher () {
 
     const params= useParams()
-    console.log(params,'params');
     const [isLoading, data] = useCallApi(`/v1/company/getCompanyById?Id=${params.Id}`)
-   console.log(data,'data')
     if(isLoading || !data ) {
         return <Spinner />
         }

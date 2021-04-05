@@ -40,7 +40,6 @@ class Ranking extends React.Component {
 // }
 
     render() {
-        console.log(this.props,'THIS>PROPS')
     let ran = this.props.can
     .sort((a,b)=>a.rank - b.rank)
     .map((i,idx,arr)=>{

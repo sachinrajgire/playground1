@@ -33,21 +33,6 @@ function Routing() {
         loginWithRedirect,
         logout,
       } = useAuth0();
-      const history= useHistory()
-
-    console.log( isLoading,
-        isAuthenticated,
-        error,user,'DATA FROM AUTHO')
- 
-      
-//
-// adminstritor enter 
-// if(isLoading) {
-// return <Spinner />
-
-// }
-
-
 
     return (
         <div>
