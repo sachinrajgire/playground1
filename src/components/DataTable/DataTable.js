@@ -84,7 +84,7 @@ export default function CustomizedTables({ data }) {
                   <StyledTableCell component="th" scope="row">
                     {row.company.companyName}
                   </StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell align="right" style={{ minWidth: 175 }}>
                     {row.jobTitle}
                   </StyledTableCell>
                   <StyledTableCell align="right">
