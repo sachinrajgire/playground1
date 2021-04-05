@@ -9,9 +9,7 @@ import {  useParams } from "react-router-dom";
 function EditRecordLauncher () {
 
     const params= useParams()
-    console.log(params,'params');
     const [isLoading, data] = useCallApi(`/v1/record/getRecordById?Id=${params.Id}`)
-   console.log(data,'data')
     if(isLoading || !data ) {
         return <Spinner />
         }

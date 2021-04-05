@@ -43,7 +43,6 @@ function handleDelete (e) {
   setSubmitted(true)
   axios.delete(`v1/company/deletecompany?_id=${gotData._id}`)
           .then(res=>{
-              console.log(res)
               setSubmitted(false)
               history.push('/app')
               // setData(res.data)
@@ -51,7 +50,6 @@ function handleDelete (e) {
           })
           .catch(e=>{
               // setIsLoading(false)
-              console.log(e)
               setSubmitted(false)
               alert(`Error Updating Record`)
           })
@@ -73,7 +71,6 @@ setSubmitted(true)
 
 axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
         .then(res=>{
-            console.log(res)
             setSubmitted(false)
             history.push('/app')
             // setData(res.data)
@@ -81,7 +78,6 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
         })
         .catch(e=>{
             // setIsLoading(false)
-            console.log(e)
             setSubmitted(false)
             alert(`Error Updating Company`)
         })
@@ -89,7 +85,6 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
 
 }
 
-// console.log(children,'children');
  return (
     <div className='new-edit-container'>
       <NavBar>

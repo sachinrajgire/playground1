@@ -43,7 +43,6 @@ const useStyles = makeStyles({
 });
 
 export default function CustomizedTables({ data }) {
-  console.log(data, "data");
   const classes = useStyles();
   const history = useHistory();
   const { isAuthenticated } = useAuth0();

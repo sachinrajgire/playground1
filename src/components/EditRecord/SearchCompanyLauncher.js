@@ -9,9 +9,7 @@ import {  useParams } from "react-router-dom";
 function SearchCompanyLauncher ({keyword,selectedRow,setSelectedRow}) {
 
     const params= useParams()
-    console.log(params,'params');
     const [isLoading, data] = useCallApi(`/v1/company/searchcompanies?keyword=${keyword}`)
-   console.log(data,'data')
     if(isLoading || !data ) {
         return <Spinner />
         }

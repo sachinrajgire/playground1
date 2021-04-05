@@ -31,7 +31,6 @@ const [fireCompanySearch,setFireCompanySearch] =useState(false)
 const [selectedRow,setSelectedRow] =useState(null)
 const [companySearchText,setCompanySearchText] =useState("")
 const [isDias, setIsDias] = useState(true);
-console.log(selectedRow,'selectedRow ');
 
 let regex = /^http/gmi;
 let commonFields ={
@@ -56,7 +55,6 @@ setSubmitted(true)
 
   axios.post('v1/company/createnewcompany',commonFields)
   .then(res=>{
-      console.log(res)
       setSubmitted(false)
       history.push('/administration')
       // setData(res.data)
@@ -72,7 +70,6 @@ setSubmitted(true)
 
 }
 
-// console.log(children,'children');
  return (
     <div className='new-edit-container'>
       <NavBar>

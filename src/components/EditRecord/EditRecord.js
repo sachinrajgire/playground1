@@ -63,10 +63,6 @@ const [enableCompanySearch,setEnableCompanySearch] =useState(false)
 const [fireCompanySearch,setFireCompanySearch] =useState(false)
 const [selectedRow,setSelectedRow] =useState(null)
 
-console.log(graduationDate,'graduation Date')
-console.log(typeof(graduationDate),'graduation Date')
-console.log(moment(graduationDate).format('YYYY-MM-DD'),'MOMEMT')
-
 
 let commonFields ={
   universityName,
@@ -82,7 +78,6 @@ function handleDelete (e) {
   setSubmitted(true)
   axios.delete(`v1/record/deleterecord?_id=${gotData._id}`)
           .then(res=>{
-              console.log(res)
               setSubmitted(false)
               history.push('/app')
               // setData(res.data)
@@ -90,7 +85,6 @@ function handleDelete (e) {
           })
           .catch(e=>{
               // setIsLoading(false)
-              console.log(e)
               setSubmitted(false)
               alert(`Error Updating Record`)
           })
@@ -105,7 +99,6 @@ function handleCompanySave (e) {
   
   axios.put('v1/record/editrecord',{company:selectedRow,_id:gotData._id})
           .then(res=>{
-              console.log(res)
               setSubmitted(false)
               history.push('/app')
               // setData(res.data)
@@ -127,7 +120,6 @@ setSubmitted(true)
 
 axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
         .then(res=>{
-            console.log(res)
             setSubmitted(false)
             history.push('/app')
             // setData(res.data)
@@ -143,7 +135,6 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
 
 }
 
-// console.log(children,'children');
  return (
     <div className='new-edit-container'>
       <NavBar>

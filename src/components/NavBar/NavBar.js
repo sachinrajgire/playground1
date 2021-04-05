@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const defaultMenu = [
     {label:'Home',url:'/', icon: <HomeIcon/>},
-    {label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
+    //{label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
 ]
 
 
