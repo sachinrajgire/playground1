@@ -46,6 +46,7 @@ export default function CustomizedTables({ data }) {
   const classes = useStyles();
   const history = useHistory();
   const { isAuthenticated } = useAuth0();
+console.log(data,'data')
 
   return (
     <>
@@ -79,7 +80,9 @@ export default function CustomizedTables({ data }) {
           </TableHead>
           <TableBody>
             {data &&
-              data.map((row) => (
+              data.map((row) => {
+                console.log(row,'ROW ')
+                return (
                 <StyledTableRow key={row._id}>
                   <StyledTableCell component="th" scope="row">
                     {row.company.companyName}
@@ -112,7 +115,8 @@ export default function CustomizedTables({ data }) {
                   </StyledTableCell> }
                  
                 </StyledTableRow>
-              ))}
+              )
+              })}
           </TableBody>
         </Table>
       </TableContainer>
