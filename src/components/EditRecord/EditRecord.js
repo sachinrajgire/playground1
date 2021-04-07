@@ -111,6 +111,14 @@ function handleCompanySave (e) {
               alert(`Error Updating Record`)
           })
 }  
+function handleUpdateDisable() {
+  if (universityName.length>2 && specialization.length>2 
+    && jobTitle.length>2 && !submitted  && graduationDate!==null && jobStartDate!==null ){
+  return false
+  }
+  return true
+  
+}
 
 function handleUpdateSubmit (e) {
 e.stopPropagation()
@@ -121,7 +129,7 @@ setSubmitted(true)
 axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
         .then(res=>{
             setSubmitted(false)
-            history.push('/app')
+            history.push('/')
             // setData(res.data)
             // setIsLoading(false)
         })
@@ -173,7 +181,7 @@ axios.put('v1/record/editrecord',{...commonFields,_id:gotData._id})
          </div>
 
        <div className='field-container bmxl bpxl' >
-         <Button disabled={submitted} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Update </Button>
+         <Button disabled={handleUpdateDisable()} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Update </Button>
          </div>
 
          

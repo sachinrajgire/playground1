@@ -35,9 +35,9 @@ const [noCompanyFound,setNoCompanyFound] =useState(false)
 
 
 function handleUpdateSubmit (e) {
-// e.stopPropagation()
-// e.preventDefault()
-// setSubmitted(true)
+e.stopPropagation()
+e.preventDefault()
+setSubmitted(true)
 
 let obj=  {
   universityName,
@@ -60,6 +60,15 @@ axios.post('v1/record/createnewrecord',obj)
       setSubmitted(false) 
       alert(`Error Creating New Record`)
   })
+}
+function handleSubmitDisable() {
+  if (universityName.length>2 && specialization.length>2 
+    && jobTitle.length>2 && !submitted && selectedRow!==null 
+    && graduationDate!==null && jobStartDate!==null ){
+  return false
+  }
+  return true
+  
 }
 
 
@@ -126,7 +135,7 @@ axios.post('v1/record/createnewrecord',obj)
          </div>
 
        <div className='field-container bmxl bpxl' >
-         <Button disabled={(universityName.length>2 && specialization.length>2 && jobTitle.length>2) ? false: true} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
+         <Button disabled={handleSubmitDisable()}onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
          </div>
          </div>
 </NavBar>
