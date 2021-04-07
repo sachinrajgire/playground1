@@ -46,7 +46,6 @@ export default function CustomizedTables({ data }) {
   const classes = useStyles();
   const history = useHistory();
   const { isAuthenticated } = useAuth0();
-console.log(data,'data')
 
   return (
     <>
