@@ -13,6 +13,7 @@ import NavBar from './components/NavBar/NavBar';
 import Promotion from './components/Promotion/Promotion';
 import { useSelector, useDispatch } from 'react-redux';
 import {storeRecords} from './redux/actions';
+import { SignalCellularNullOutlined } from '@material-ui/icons';
 
 
 
@@ -22,10 +23,17 @@ const [data, setData]=useState([])
 const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
 const [isDataLoading, setIsDataLoading] = useState(false)
-const [nextCursor, setNextCursor] = useState(null)
 const dispatch = useDispatch()
 const reduxRecords = useSelector((state)=>state.records)
 
+
+function getNextCursor() {
+if(data.length === 0) {
+    return null
+}
+return data[data.length-1]._id
+
+}
 
 const history= useHistory()
 
@@ -41,7 +49,7 @@ useEffect(()=>{
 
 setIsDataLoading(true)
 
-axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
+axios.get(`v1/record/getpaginatedrecords?next_cursor=${getNextCursor()}`)
 .then(res=>{
     setData(res.data)
     setIsDataLoading(false)
@@ -55,7 +63,7 @@ axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
 
 function getNext(){
     setIsDataLoading(true)
-    axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
+    axios.get(`v1/record/getpaginatedrecords?next_cursor=${getNextCursor()}`)
 .then(res=>{
     let copyData=[...data,...res.data]
     setData(copyData)
@@ -84,13 +92,6 @@ function handleSearch () {
 
 }
 
-useEffect(()=>{
-if(data && data.length) {
-    const lastElemId = data[data.length-1]._id
-   setNextCursor(lastElemId)
-}
-
-},[data])
 
 function handleClear(){
 setSearchText("")
@@ -124,7 +125,7 @@ onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inlin
 </div>
 
 <div className ="search-group">
-<Button disabled={searchInvoked} onClick={()=>handleSearch()} color="primary" id="inline">Search</Button>
+<Button  onClick={()=>handleSearch()} color="primary" id="inline">Search</Button>
 </div>
 
 </div>
@@ -141,7 +142,7 @@ data={data}
 <div>
 
 </div>
-{data && data.length >=24 &&
+{data &&
 <div style={{margin:'20px',textAlign:'right'}}>
 <Button onClick={()=>getNext()} color="secondary">Next</Button>
 </div>

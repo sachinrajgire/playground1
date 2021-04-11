@@ -15,13 +15,7 @@ import Divider from '@material-ui/core/Divider';
 
 function NewCompany({}) {
 
-// function handleFormDisable () {
-// let elen= employer.length
-// if(elen >=2 && elen <=20 && !isSubmitDisabled){
-//     return false 
-// }
-// return true
-// }
+
 
 const history= useHistory()
 const [companyName,setCompanyName]=useState("")
@@ -38,13 +32,16 @@ let commonFields ={
   companyName,
 }
 
-function handleCompanySave (e) {
-  e.stopPropagation()
-  e.preventDefault()
-  setSubmitted(true)
-  
-}  
 
+function handleSubmitDisable() {
+  if (companyName.length>2 && careerUrl.length>4 
+   && !submitted 
+   ){
+  return false
+  }
+  return true
+  
+}
 
 
 
@@ -66,8 +63,6 @@ setSubmitted(true)
       setSubmitted(false)
       alert(`Error Creating New Company`)
   })
-  
-
 }
 
  return (
@@ -116,7 +111,7 @@ setSubmitted(true)
          
 
        <div className='field-container' >
-         <Button disabled={(companyName.length>2 && regex.test(careerUrl)) ? false: true} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
+         <Button disabled={handleSubmitDisable()} onClick={(e)=>handleUpdateSubmit(e)} color="secondary">Submit </Button>
          </div>
          </div>
 
