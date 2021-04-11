@@ -80,7 +80,6 @@ export default function CustomizedTables({ data }) {
           <TableBody>
             {data &&
               data.map((row) => {
-                console.log(row,'ROW ')
                 return (
                 <StyledTableRow key={row._id}>
                   <StyledTableCell component="th" scope="row">

@@ -44,7 +44,6 @@ const useStyles = makeStyles({
 });
 
 export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
-    console.log(data,'data')
   const classes = useStyles();
   const history= useHistory()
 
