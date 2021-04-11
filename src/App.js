@@ -13,7 +13,6 @@ import NavBar from './components/NavBar/NavBar';
 import Promotion from './components/Promotion/Promotion';
 import { useSelector, useDispatch } from 'react-redux';
 import {storeRecords} from './redux/actions';
-import { SignalCellularNullOutlined } from '@material-ui/icons';
 
 
 
