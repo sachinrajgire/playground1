@@ -24,13 +24,16 @@ initialState.companyName= gotData.companyName
 return initialState
 }
 
-// function handleFormDisable () {
-// let elen= employer.length
-// if(elen >=2 && elen <=20 && !isSubmitDisabled){
-//     return false 
-// }
-// return true
-// }
+function handleSubmitDisable() {
+  if (companyName.length>2 && careerUrl.length>4 
+   && !submitted 
+   ){
+  return false
+  }
+  return true
+  
+}
+
 
 const history= useHistory()
 const [companyName,setCompanyName]=useState(getInitialValues().companyName)
@@ -106,7 +109,7 @@ axios.put('v1/company/editcompany',{...commonFields,_id:gotData._id})
          
 
        <div className='field-container' >
-         <Button disabled={submitted} onClick={(e)=>handleUpdate(e)} color="secondary">Update </Button>
+         <Button disabled={handleSubmitDisable()} onClick={(e)=>handleUpdate(e)} color="secondary">Update </Button>
          </div>
          <div className="dangerzone">
         DANGER ZONE -- BE CAREFUL 
