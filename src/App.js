@@ -130,8 +130,7 @@ onKeyPress={(e)=>handleKeyPress(e)} autoFocus type="text" name="email" id="inlin
 </div>
 
 
-{searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>
-}
+{searchInvoked && <span style={{marginLeft:'20px'}}><Button  onClick={()=>handleClear()} color="primary">Clear</Button></span>}
 </div>
 
 <DataTable 
