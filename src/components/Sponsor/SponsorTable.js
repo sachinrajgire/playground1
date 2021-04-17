@@ -9,6 +9,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Url from '../Url/Url';
 import { Badge } from 'reactstrap';
+import { useAuth0 } from "@auth0/auth0-react";
+
+
 import {
   Switch,
   Route,
@@ -46,6 +49,8 @@ const useStyles = makeStyles({
 export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
   const classes = useStyles();
   const history= useHistory()
+  const { isAuthenticated } = useAuth0();
+
 
   return (
     <TableContainer component={Paper}>
@@ -55,6 +60,7 @@ export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
           <TableRow>
             {/* <StyledTableCell align="right">Select</StyledTableCell> */}
             <StyledTableCell>Company name</StyledTableCell>
+            <StyledTableCell>Details</StyledTableCell>
             <StyledTableCell>Edit</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -72,11 +78,20 @@ export default function CustomizedTables({data,selectedRow,setSelectedRow}) {
                         />
                       </TableCell> */}
               <StyledTableCell component="th" scope="row">
-                {row.companyName}
+                {row.sponsorName}
               </StyledTableCell>
-              <StyledTableCell align="right" onClick={()=>history.push(`/editcompany/${row._id}`)} >
-                 <Url>Edit</Url>
-                  </StyledTableCell>
+              <Url><StyledTableCell component="th" scope="row" 
+              onClick={() => history.push(`/sponsordetails/${row._id}`)}
+              >
+                Details
+              </StyledTableCell>
+              </Url>
+              {isAuthenticated &&  <StyledTableCell
+                    align="right"
+                    onClick={() => history.push(`/editrecord/${row._id}`)}
+                  >
+                    <Url>Edit</Url>
+                  </StyledTableCell> }
              
             </StyledTableRow>
           ))}

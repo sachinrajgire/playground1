@@ -1,0 +1,87 @@
+
+
+.container {
+    /* display:flex; */
+    /* flex-direction: column; */
+    margin:5vw;
+}
+
+
+.Box2 {
+
+min-height: 140px;
+min-width:140px ;
+border: 1px solid grey;
+background-color: red;
+box-sizing :border-box; 
+margin:20px;
+
+}
+
+
+@media screen and (min-width: 760px) {
+   .container {
+       flex-direction: row;
+   }
+
+   .Box2 {
+    min-height: 120px;
+    min-width:20% ;
+    border: 1px solid grey;
+    background-color: red;
+    box-sizing :border-box; 
+    margin:1vw;
+   }
+
+  }
+
+  #outer {
+      background-color: blue;
+      min-width: 500px;
+      min-height: 500px;
+      margin:20px;
+  }
+  #middle {
+      background-color: orange;
+      min-width: 400px;
+      min-height: 400px;
+      margin:20px;
+  }
+  #inner {
+      background-color: yellow;
+      min-width: 300px;
+      min-height: 300px;
+      margin:20px;
+  } 
+
+
+.cardDiv:hover {
+ background-color: azure;
+ border:2px solid yellow;
+}
+
+  .page {
+margin-right: 15px;
+color:blue;
+
+  }
+
+
+
+.page:hover {
+    margin-right: 15px;
+    color:orange;
+    font-size: 22px;
+    font-weight: bolder;
+   }
+
+   
+.search-group{
+    
+        display: inline-flex; 
+        margin-bottom: 20px;
+        
+      
+        
+
+}

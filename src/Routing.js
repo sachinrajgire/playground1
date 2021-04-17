@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import App from './App' ;
 import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
-import Dashboard from './components/Dashboard/Dashboard';
+import PlacementData from './components/PlacementData/PlacementData';
 import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
 import Sponsors from './components/Sponsor';
@@ -26,14 +26,14 @@ import EditRecord from './components/EditRecord/EditRecord';
 
 
 function Routing() {
-  const {
-        isLoading,
-        isAuthenticated,
-        error,
-        user,
-        loginWithRedirect,
-        logout,
-      } = useAuth0();
+  // const {
+  //       isLoading,
+  //       isAuthenticated,
+  //       error,
+  //       user,
+  //       loginWithRedirect,
+  //       logout,
+  //     } = useAuth0();
 
     return (
         <div>
@@ -50,6 +50,7 @@ function Routing() {
             <Route path="/createnewsponsor" component={NewSponsor} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
+            <Route path="/placementdata" component={PlacementData} />
             <Route path="/" component={App} />   
 
             {/* {isAuthenticated && user.email==='sachin@wynisco.com'
