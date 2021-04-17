@@ -83,7 +83,7 @@ return history.push(item.url)
         }}
         anchor="left"
       >
-        <a href="https://app.wynisco.com">
+        <a href="/">
         <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"175px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
         </a>
         <div className={classes.toolbar} />
