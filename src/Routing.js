@@ -4,16 +4,18 @@ import React, { Fragment, useEffect, useState } from 'react';
 import App from './App' ;
 import Rooter from './components/Rooter/Rooter' ;
 import Lottery from './components/Lottery/Lottery'
-import Dashboard from './components/Dashboard/Dashboard';
+import PlacementData from './components/PlacementData/PlacementData';
 import Administration from './components/Administration';
 import Visualizations from './components/Visualizations';
+import Sponsors from './components/Sponsor';
 import EditRecordLauncher from './components/EditRecord/EditRecordLauncher';
 import NewRecord from './components/EditRecord/NewRecord';
 import NewCompany from './components/EditCompany/NewCompany';
+import NewSponsor from './components/Sponsor/NewSponsor';
 import EditCompanyLauncher from './components/EditCompany/EditCompanyLauncher';
 import Login from './components/Login/Login';
 import { useAuth0 } from "@auth0/auth0-react";
-import Spinner from '@material-ui/core/LinearProgress';
+
 import {
     Switch,
     Route,
@@ -24,14 +26,14 @@ import EditRecord from './components/EditRecord/EditRecord';
 
 
 function Routing() {
-  const {
-        isLoading,
-        isAuthenticated,
-        error,
-        user,
-        loginWithRedirect,
-        logout,
-      } = useAuth0();
+  // const {
+  //       isLoading,
+  //       isAuthenticated,
+  //       error,
+  //       user,
+  //       loginWithRedirect,
+  //       logout,
+  //     } = useAuth0();
 
     return (
         <div>
@@ -44,8 +46,11 @@ function Routing() {
             <Route path="/editcompany/:Id" component={EditCompanyLauncher} />                  
             <Route path="/createnewcompany" component={NewCompany} />                  
             <Route path="/createnewrecord" component={EditRecord} />                   
+            <Route path="/sponsor" component={Sponsors} />                   
+            <Route path="/createnewsponsor" component={NewSponsor} />                   
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
+            <Route path="/placementdata" component={PlacementData} />
             <Route path="/" component={App} />   
 
             {/* {isAuthenticated && user.email==='sachin@wynisco.com'

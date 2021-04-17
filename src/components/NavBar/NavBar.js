@@ -45,14 +45,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const defaultMenu = [
-    {label:'Home',url:'/', icon: <HomeIcon/>},
-    //{label:'Visualizations',url:'/visualizations', icon: <EqualizerIcon/>},
+    {label:'Home',url:'/', icon: <HomeIcon/>, isExternal:false},
+    {label:'F1 Placement Data',url:'/placementdata', icon: <AdminIcon/>, isExternal:false},
+    {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: <EqualizerIcon/>},
+    {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: <EqualizerIcon/>},
 ]
 
 
 export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
   const classes = useStyles();
   const history= useHistory()
+
+  function handleClick(item) {
+if(item.isExternal) {
+  window.location.href=item.url
+  return 
+}
+return history.push(item.url)
+
+  }
 
   return (
     <div className={classes.root}>
@@ -72,14 +83,16 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
         }}
         anchor="left"
       >
+        <a href="/">
         <img src="https://res.cloudinary.com/davc0hf56/image/upload/v1612530143/xrzczs8v5ekd5iibboko.png" style={{height:"175px" ,width:"250px", marginBottom:"-64.5px"}} alt="Wynisco Logo"></img>
+        </a>
         <div className={classes.toolbar} />
         <Divider />
         <List>       
           {menu.map((item, index) => (
             <ListItem button key={item.label}>
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} onClick={()=>history.push(item.url)}/>
+              <ListItemText primary={item.label} onClick={()=>handleClick(item)}/>
             </ListItem>
           ))}
 
