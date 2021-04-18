@@ -71,7 +71,7 @@ return history.push(item.url)
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-           F1 Student Placement Database
+           F1 Student App 
           </Typography>
         </Toolbar>
       </AppBar>
