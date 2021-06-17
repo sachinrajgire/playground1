@@ -15,6 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home'
 import EqualizerIcon from '@material-ui/icons/Equalizer'
 import AdminIcon from '@material-ui/icons/AccountBalance'
+import MenuIcon from '@material-ui/icons/Menu';
 import {  useHistory } from "react-router-dom";
 
 
@@ -49,6 +50,7 @@ const defaultMenu = [
     {label:'F1 Placement Data',url:'/placementdata', icon: <AdminIcon/>, isExternal:false},
     {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: <EqualizerIcon/>},
     {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: <EqualizerIcon/>},
+    {label:'MenuStat', url:'/menustat', icon: <MenuIcon/>, isExternal:false}
 ]
 
 
