@@ -4,13 +4,29 @@ import './beststyles.scss'
 import NavBar from './components/NavBar/NavBar';
 import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import {  useHistory } from "react-router-dom";
-
+import ScreenGrab from './components/ScreenGrab/Screengrab'
+import useScrollPosition from '@react-hook/window-scroll'
+import { useWindowSize } from "@react-hook/window-size/throttled";
+import { useWindowSize as useWindowSizeD } from "@react-hook/window-size/";
 
 function App() {
-    const history= useHistory()
+  const history= useHistory()
+  const [width, height] = useWindowSize({ fps: 60 });
+  const scrollY = useScrollPosition(60 /*frames per second*/);
+   const twentyfive = (0.25* height);
+
+
+
 
 return (
+  <>
+  {
+    scrollY >= twentyfive && <ScreenGrab/>
+  }
+
+
 <div className='container'>
+
 <NavBar>
 
     <Row>
@@ -43,9 +59,10 @@ return (
 
 
 
-</NavBar> 
-</div> 
-    
+</NavBar>
+</div>
+</>
+
     )
 
 }
