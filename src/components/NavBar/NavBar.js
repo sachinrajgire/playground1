@@ -24,6 +24,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    position:'absolute',
+     zIndex: '1'
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -61,7 +63,7 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
   function handleClick(item) {
 if(item.isExternal) {
   window.location.href=item.url
-  return 
+  return
 }
 return history.push(item.url)
 
@@ -73,7 +75,7 @@ return history.push(item.url)
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-           F1 Student App 
+           F1 Student App
           </Typography>
         </Toolbar>
       </AppBar>
@@ -90,7 +92,7 @@ return history.push(item.url)
         </a>
         <div className={classes.toolbar} />
         <Divider />
-        <List>       
+        <List>
           {menu.map((item, index) => (
             <ListItem button key={item.label}>
               <ListItemIcon>{item.icon}</ListItemIcon>
