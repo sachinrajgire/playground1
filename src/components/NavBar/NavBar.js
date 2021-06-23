@@ -1,4 +1,5 @@
 import React from 'react';
+import "./NavBar.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,33 +24,58 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    backgroundColor:"black",
+    color:"rgb(255,213,30)"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+
   },
   drawerPaper: {
     width: drawerWidth,
-
+    backgroundColor:"rgba(255,255,255,1)",
+    color: "black",
+    opacity:"100%",
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
   },
 }));
+
+const home = <p>🏠</p>
+const placement = <p>📁</p>
+const employer = <p>💼</p>
+const volunteer = <p>🙋‍</p>
+
 const defaultMenu = [
-    {label:'Home',url:'/', icon: <HomeIcon/>, isExternal:false},
-    {label:'F1 Placement Data',url:'/placementdata', icon: <AdminIcon/>, isExternal:false},
-    {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: <EqualizerIcon/>},
-    {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: <EqualizerIcon/>},
+    {label:'Home',url:'/', icon: home, isExternal:false},
+    {label:'F1 Placement Data',url:'/placementdata', icon: placement, isExternal:false},
+    {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: employer},
+    {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: volunteer},
 ]
+
+const flexContainer = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems:"center",
+  padding: 0,
+};
+
+const flexItem = {
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center"
+}
 
 
 export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
@@ -66,13 +92,22 @@ return history.push(item.url)
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="nav">
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} title={<img src="https://unsplash.it/40/40"/>}>
         <Toolbar>
           <Typography variant="h6" noWrap>
            F1 Student App 
           </Typography>
+          {/* <List style={flexContainer}>       
+          {menu.map((item, index) => (
+            <ListItem style={flexItem} button key={item.label}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} onClick={()=>handleClick(item)}/>
+            </ListItem>
+          ))}
+
+        </List> */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -90,22 +125,15 @@ return history.push(item.url)
         <Divider />
         <List>       
           {menu.map((item, index) => (
-            <ListItem button key={item.label}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItem id="nav-list-item" button key={item.label}>
+              <ListItemIcon id="icon-nav">{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} onClick={()=>handleClick(item)}/>
             </ListItem>
           ))}
 
         </List>
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
+        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
