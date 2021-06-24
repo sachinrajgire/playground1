@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './App.css'
 import './beststyles.scss'
+import Screengrab from "./components/Screengrab/Screengrab"
 import NavBar from './components/NavBar/NavBar';
 import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import {  useHistory } from "react-router-dom";
@@ -26,6 +27,8 @@ return (
 
 
 <div className='container'>
+
+
 
 <NavBar>
 
