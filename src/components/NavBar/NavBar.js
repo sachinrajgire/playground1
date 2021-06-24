@@ -16,6 +16,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home'
 import EqualizerIcon from '@material-ui/icons/Equalizer'
 import AdminIcon from '@material-ui/icons/AccountBalance'
+import MenuIcon from '@material-ui/icons/Menu';
 import {  useHistory } from "react-router-dom";
 
 
@@ -24,7 +25,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    
+    position:'absolute',
+     zIndex: '1'
+
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -58,10 +61,13 @@ const employer = <p>💼</p>
 const volunteer = <p>🙋‍</p>
 
 const defaultMenu = [
-    {label:'Home',url:'/', icon: home, isExternal:false},
-    {label:'F1 Placement Data',url:'/placementdata', icon: placement, isExternal:false},
-    {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: employer},
-    {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: volunteer},
+
+    {label:'Home',url:'/', icon: <HomeIcon/>, isExternal:false},
+    {label:'F1 Placement Data',url:'/placementdata', icon: <AdminIcon/>, isExternal:false},
+    {label:'Sponsoring Employers',url:'https://www.wynisco.com/blog/companies-sponsoring-h1b-visa', isExternal:true, icon: <EqualizerIcon/>},
+    {label:'Volunteering Opportunities',url:'https://www.wynisco.com/blog/volunteer-opportunities-for-f1-students-to-stop-the-clock', isExternal:true, icon: <EqualizerIcon/>},
+    {label:'MenuStat', url:'/menustat', icon: <MenuIcon/>, isExternal:false}
+
 ]
 
 const flexContainer = {
@@ -85,7 +91,7 @@ export default function PermanentDrawerLeft({menu=defaultMenu,children}) {
   function handleClick(item) {
 if(item.isExternal) {
   window.location.href=item.url
-  return 
+  return
 }
 return history.push(item.url)
 
@@ -97,7 +103,7 @@ return history.push(item.url)
       <AppBar position="fixed" className={classes.appBar} title={<img src="https://unsplash.it/40/40"/>}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-           F1 Student App 
+           F1 Student App
           </Typography>
           {/* <List style={flexContainer}>       
           {menu.map((item, index) => (
@@ -123,7 +129,7 @@ return history.push(item.url)
         </a>
         <div className={classes.toolbar} />
         <Divider />
-        <List>       
+        <List>
           {menu.map((item, index) => (
             <ListItem id="nav-list-item" button key={item.label}>
               <ListItemIcon id="icon-nav">{item.icon}</ListItemIcon>

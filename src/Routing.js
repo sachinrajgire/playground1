@@ -14,6 +14,7 @@ import NewCompany from './components/EditCompany/NewCompany';
 import NewSponsor from './components/Sponsor/NewSponsor';
 import EditCompanyLauncher from './components/EditCompany/EditCompanyLauncher';
 import Login from './components/Login/Login';
+import MenuStat from './components/MenuStats/MenuStat';
 import { useAuth0 } from "@auth0/auth0-react";
 
 import {
@@ -51,6 +52,7 @@ function Routing() {
             <Route path="/login" component={Login} />                   
             <Route path="/administration" component={Administration} />
             <Route path="/placementdata" component={PlacementData} />
+            <Route path="/menustat" component={MenuStat}/>
             <Route path="/" component={App} />   
 
             {/* {isAuthenticated && user.email==='sachin@wynisco.com'
