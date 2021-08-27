@@ -1,9 +1,21 @@
-.screen-grab {
-  height: 100vh;
-  width: 100vw;
+.outerDiv {
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
+  opacity: 1;
   top: 0;
   left: 0;
+  height: 100vh;
+  width: 100vw;
+  transition: opacity 0.3s ease;
+  z-index: 9999999;
+}
+
+.screen-grab {
+  height: 40vh;
+  width: 60vw;
+  position: absolute;
+  top: 30vh;
+  left: 20vw;
   z-index: 3;
   background-color: #ffd51e;
 }
@@ -15,7 +27,7 @@
 }
 
 .content-screen {
-  height: 90vh;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
