@@ -110,7 +110,7 @@ return (
 
 <div>
 <div className='mxl'>
-     You can search by company name, university name, specialization or job title.
+     You can search by company name, university name, specialization or job title
      </div>  
 <div className= "search-group">
  
