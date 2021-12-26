@@ -27,14 +27,14 @@ import EditRecord from './components/EditRecord/EditRecord';
 
 
 function Routing() {
-  // const {
-  //       isLoading,
-  //       isAuthenticated,
-  //       error,
-  //       user,
-  //       loginWithRedirect,
-  //       logout,
-  //     } = useAuth0();
+  const {
+        isLoading,
+        isAuthenticated,
+        error,
+        user,
+        loginWithRedirect,
+        logout,
+      } = useAuth0();
 
     return (
         <div>
@@ -55,11 +55,11 @@ function Routing() {
             <Route path="/menustat" component={MenuStat}/>
             <Route path="/" component={App} />   
 
-            {/* {isAuthenticated && user.email==='sachin@wynisco.com'
+            {isAuthenticated && user.login==='sachin@wynisco.com' 
           ? <Route path="/dashboard" component={Dashboard} />
-          : <Route path="/dashboa" component={Login} />
-          
-        } */}
+          : <Route path="/account" component={Login} />
+        }
+      
 
            </Switch>
         </div>
